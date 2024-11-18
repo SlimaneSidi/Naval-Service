@@ -7,19 +7,19 @@
 
 #define SIZE 50
 
-typedef struct TYPE_NAVIRE
+typedef struct TYPE_NAVIRE TYPE_NAVIRE;
 struct TYPE_NAVIRE {
-    char NavirePassagers[] = "navire de passagers";
-    char NavireMarchand[] = "navire de marchandises";
-    char Petrolier[] = "pétrolier";
-    char Yacht[] = "yacht";
+    char NavirePassagers[50];
+    char NavireMarchand[50];    //= "navire de marchandises";
+    char Petrolier[50];          // =  "pétrolier";
+    char Yacht[50];             // = "yacht";
 };
 
-typedef struct Navire 
+typedef struct Navire  Navire;
 struct Navire {
     int id;
     TYPE_NAVIRE type[SIZE];
-    char etat[SIZE] // (en mer, accosté, en attente)
+    char etat[SIZE]; // (en mer, accosté, en attente)
     int CapaciteChargement; // (en tonnes)
 };
 
