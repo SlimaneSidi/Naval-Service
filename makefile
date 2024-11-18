@@ -18,7 +18,7 @@ exec: $(OBJFILES)
 $(BUILDDIR)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) $@ -c $< -Wno-unused-result
 
-rocknoir:
+clean:
 	rm -f $(BUILDDIR)/*.o
 	rm -fr $(BUILDDIR)
 	rm -f exec
