@@ -13,7 +13,7 @@ $(BUILDDIR):
 	mkdir $(BUILDDIR)
 
 exec: $(OBJFILES)
-	$(CC) $(CFLAGS) $@ $^ -lX11 -lm -lglut -lGL -pthread 
+	$(CC) $(CFLAGS) $@ $^ -lm -lX11 -lglut -lGL -pthread 
 
 $(BUILDDIR)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) $@ -c $< -Wno-unused-result
