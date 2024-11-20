@@ -2,30 +2,26 @@
 
 Quai* CreerQuai(Quai* quai){
     Quai* quai1 = malloc(sizeof(Quai));
-    //if(quai1 == NULL) {return NULL;}
 
     printf("Choisissez le numéro du quai : ");
-    //if ( != 1) {
     scanf("%d", &quai1->NumeroQuai);
-    //free(quai1);
-    printf("\n\n");
-    //return NULL;
+    printf("\n");
     
     printf("Choisissez la taille du quai : ");
     scanf("%d", &quai1->QuaiSize);
-    printf("\n\n");
+    printf("\n");
     
     printf("Choisissez la profondeur du quai : ");
     scanf("%d", &quai1->Profondeur);
-    printf("\n\n");
+    printf("\n");
     
-    printf("Choisissez le type de navire (NavirePassagers, NavireMarchand, Petrolier, ou Yacht) : ");
+    printf("Choisissez le type de navire (NavirePassager, NavireMarchand, Petrolier, ou Yacht) : ");
     char typeTemp[SIZE];
     scanf("%s", typeTemp);
-    printf("\n\n");
+    printf("\n");
 
-    if (strcmp(typeTemp, "NavirePassagers") == 0) {
-        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassagers" };
+    if (strcmp(typeTemp, "NavirePassager") == 0) {
+        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassager" };
     } else if (strcmp(typeTemp, "NavireMarchand") == 0) {
         quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .NavireMarchand = "NavireMarchand" };
     } else if (strcmp(typeTemp, "Petrolier") == 0) {
@@ -34,33 +30,32 @@ Quai* CreerQuai(Quai* quai){
         quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .Yacht = "Yacht" };
     } else {
         printf("Type de navire invalide.\n");
-        return NULL;
+        CreerQuai(quai);
     }
     printf("Choisissez le nombre maximum de navires accostés : ");
     scanf("%d", &quai1->MaxNaviresAccostés);
-    printf("\n\n");
+    printf("\n");
 
     quai1->NextNavire = NULL;
-    quai1 = quai;
-    return quai;
+    printf("Quai : %d\n", quai1->NumeroQuai);
+    return quai1;
 }
 
-Navire* CreerNavire(Navire* navire)
-{
+Navire* CreerNavire(Navire* navire){
     Navire* navire1 = malloc(sizeof(Navire));
     //if (navire1 == NULL) {return NULL;}
 
     printf("Choisissez l'identifiant du navire : ");
     scanf("%d", &navire1->id);
-    printf("\n\n");
+    printf("\n");
 
-    printf("Choisissez le type de navire (NavirePassagers, NavireMarchand, Petrolier, ou Yacht) : ");
+    printf("Choisissez le type de navire (NavirePassager, NavireMarchand, Petrolier, ou Yacht) : ");
     char typeTemp[SIZE];
     scanf("%s", typeTemp);
-    printf("\n\n");
+    printf("\n");
 
-    if (strcmp(typeTemp, "NavirePassagers") == 0) {
-        navire1->type[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassagers" };
+    if (strcmp(typeTemp, "NavirePassager") == 0) {
+        navire1->type[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassager" };
     } else if (strcmp(typeTemp, "NavireMarchand") == 0) {
         navire1->type[0] = &(TYPE_NAVIRE) { .NavireMarchand = "NavireMarchand" };
     } else if (strcmp(typeTemp, "Petrolier") == 0) {
@@ -69,7 +64,7 @@ Navire* CreerNavire(Navire* navire)
         navire1->type[0] = &(TYPE_NAVIRE) { .Yacht = "Yacht" };
     } else {
         printf("Type de navire invalide.\n");
-        return NULL;
+        CreerNavire(navire); // Si le type de navire n'est pas valide, on recommence la création du navire (probleme pour la demande suivante faite 2 fois)
     }
     printf("Choisissez l'état du navire (en mer (1), accosté (2), en attente (3)) : ");
     int etatTemp;
@@ -84,35 +79,34 @@ Navire* CreerNavire(Navire* navire)
         printf("\n\n");
         return NULL;
     }
+    printf("\n");
     printf("Choisissez la capacité de chargement du navire : ");
     scanf("%d", &navire1->CapaciteChargement);
-    printf("\n\n");
+    printf("\n");
 
-    navire1 = navire;
-    return navire;
+    return navire1;
 }
 
-void AfficherQuai(Quai* quai)
-{
-    if (quai == NULL) {
-        printf("Quai non initialisé.\n");
-        return;
+void AfficherQuai(Quai* quai){
+    Quai* quai1 = quai;
+    while (quai1 != NULL) {
+        printf("Numéro du quai : %d\n",quai1->NumeroQuai);
+        printf("Taille du quai : %d\n",quai1->QuaiSize);
+        printf("Profondeur du quai : %d\n",quai1->Profondeur);
+        //printf("Type de navire : %s\n",quai1->TypeNavire);
+        printf("Nombre maximum de navires accostés : %d\n",quai1->MaxNaviresAccostés);
+        quai1 = quai1->NextNavire;
     }
-    printf("Numéro du quai : %d\n",quai->NumeroQuai);
-    printf("Taille du quai : %d\n",quai->QuaiSize);
-    printf("Profondeur du quai : %d\n",quai->Profondeur);
-    //printf("Type de navire : %s\n",quai->TypeNavire);
-    printf("Nombre maximum de navires accostés : %d\n",quai->MaxNaviresAccostés);
+    printf("NULL\n");
 }
 
-void AfficherNavire(Navire* navire)
-{
-    if (navire == NULL) {
-        printf("Navire non initialisé.\n");
-        return;
+void AfficherNavire(Navire* navire){
+    Navire* navire1 = navire;
+    while (navire1 != NULL) {
+        printf("Identifiant du navire : %d\n",navire1->id);
+        //printf("Type de navire : %s\n",navire1->type);
+        printf("Etat du navire : %s\n",navire1->etat);
+        printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
     }
-    printf("Identifiant du navire : %d\n",navire->id);
-    //printf("Type de navire : %s\n",navire->type);
-    printf("Etat du navire : %s\n",navire->etat);
-    printf("Capacité de chargement du navire : %d\n",navire->CapaciteChargement);
+    printf("NULL\n");
 }

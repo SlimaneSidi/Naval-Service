@@ -14,7 +14,7 @@ int main(void)
 
     while(i != 0){
 
-        printf("    QUE VOULEZ VOUS FAIRE ?\n\n");
+        printf("----- QUE VOULEZ VOUS FAIRE ? -----\n\n");
         printf("1 - Créer un quai\n");
         printf("2 - Créer un navire\n");
         printf("3 - Afficher les quais\n");
