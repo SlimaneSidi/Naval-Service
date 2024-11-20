@@ -30,21 +30,25 @@ int main(void)
             i = 0;
             break;
         case 1 : 
+            printf("\n");
             printf("Créer un quai : \n\n");
             CreerQuai(quai);
             printf("\n\n");
             break;
         case 2 : 
+            printf("\n");
             printf("Créer un navire : \n\n");
             CreerNavire(navire);
             printf("\n\n");
             break;
         case 3 : 
+            printf("\n");
             printf("Afficher les quais : \n\n");
             AfficherQuai(quai);
             printf("\n\n");
             break;
         case 4 : 
+            printf("\n");
             printf("Afficher les navires : \n\n");
             AfficherNavire(navire);
             printf("\n\n");

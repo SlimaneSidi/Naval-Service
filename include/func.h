@@ -13,16 +13,16 @@
 
 typedef struct TYPE_NAVIRE TYPE_NAVIRE;
 struct TYPE_NAVIRE {
-    char NavirePassagers[50];
-    char NavireMarchand[50];    //= "navire de marchandises";
-    char Petrolier[50];          // =  "pétrolier";
-    char Yacht[50];             // = "yacht";
+    char NavirePassagers[SIZE];   //= "navire de passagers";
+    char NavireMarchand[SIZE];    //= "navire de marchandises";
+    char Petrolier[SIZE];          // =  "pétrolier";
+    char Yacht[SIZE];             // = "yacht";
 };
 
-typedef struct Navire  Navire;
+typedef struct Navire Navire;
 struct Navire {
     int id;
-    TYPE_NAVIRE type[SIZE];
+    TYPE_NAVIRE* type[SIZE];
     char etat[SIZE]; // (en mer, accosté, en attente)
     int CapaciteChargement; // (en tonnes)
 };
@@ -32,14 +32,14 @@ struct Quai {
     int NumeroQuai;
     int QuaiSize;
     int Profondeur;
-    TYPE_NAVIRE TypeNavire;
+    TYPE_NAVIRE* TypeNavire[SIZE];
     int MaxNaviresAccostés;
-    Navire *NextNavire; //Liste chaînée des navires en attente d'accostage
+    Navire* NextNavire; //Liste chaînée des navires en attente d'accostage
 };
 
-Quai CreerQuai(Quai *quai);
-Navire CreerNavire(Navire *navire);
-void AfficherQuai(Quai *quai);
-void AfficherNavire(Navire *navire);
+Quai* CreerQuai(Quai* quai);
+Navire* CreerNavire(Navire* navire);
+void AfficherQuai(Quai* quai);
+void AfficherNavire(Navire* navire);
 
 #endif
