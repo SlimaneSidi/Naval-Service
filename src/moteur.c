@@ -1,4 +1,4 @@
-#include "../include/func.h"
+#include "../include/moteur.h"
 
 Quai* CreerQuai(Quai* quai){
     Quai* quai1 = malloc(sizeof(Quai));
@@ -21,13 +21,13 @@ Quai* CreerQuai(Quai* quai){
     printf("\n");
 
     if (strcmp(typeTemp, "NavirePassager") == 0) {
-        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassager" };
+        quai1->Type[0] = &(TYPE_NAVIRE) { .NavirePassagers = "NavirePassager" };
     } else if (strcmp(typeTemp, "NavireMarchand") == 0) {
-        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .NavireMarchand = "NavireMarchand" };
+        quai1->Type[0] = &(TYPE_NAVIRE) { .NavireMarchand = "NavireMarchand" };
     } else if (strcmp(typeTemp, "Petrolier") == 0) {
-        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .Petrolier = "Petrolier" };
+        quai1->Type[0] = &(TYPE_NAVIRE) { .Petrolier = "Petrolier" };
     } else if (strcmp(typeTemp, "Yacht") == 0) {
-        quai1->TypeNavire[0] = &(TYPE_NAVIRE) { .Yacht = "Yacht" };
+        quai1->Type[0] = &(TYPE_NAVIRE) { .Yacht = "Yacht" };
     } else {
         printf("Type de navire invalide.\n");
         CreerQuai(quai);
@@ -93,20 +93,18 @@ void AfficherQuai(Quai* quai){
         printf("Numéro du quai : %d\n",quai1->NumeroQuai);
         printf("Taille du quai : %d\n",quai1->QuaiSize);
         printf("Profondeur du quai : %d\n",quai1->Profondeur);
-        //printf("Type de navire : %s\n",quai1->TypeNavire);
+        printf("Type de navire : %s\n",quai1->Type);
         printf("Nombre maximum de navires accostés : %d\n",quai1->MaxNaviresAccostés);
         quai1 = quai1->NextNavire;
     }
-    printf("NULL\n");
 }
 
 void AfficherNavire(Navire* navire){
     Navire* navire1 = navire;
-    while (navire1 != NULL) {
-        printf("Identifiant du navire : %d\n",navire1->id);
-        //printf("Type de navire : %s\n",navire1->type);
-        printf("Etat du navire : %s\n",navire1->etat);
-        printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
-    }
-    printf("NULL\n");
+    //while (navire1 != NULL) {
+    printf("Identifiant du navire : %d\n",navire1->id);
+    printf("Type de navire : %s\n",navire1->type);
+    printf("Etat du navire : %s\n",navire1->etat);
+    printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
+    //}
 }
