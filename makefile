@@ -4,7 +4,7 @@ CFLAGS := -Wall -O2 -o
 BUILDDIR := ./build
 INCLUDE := ./include
 SRC := ./src
-SRCFILES := main.c func.c
+SRCFILES := main.c moteur.c menu.c
 OBJFILES := $(patsubst %.c, $(BUILDDIR)/%.o, $(SRCFILES))
 
 all: $(BUILDDIR) exec
