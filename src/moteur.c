@@ -93,7 +93,7 @@ void AfficherQuai(Quai* quai){
         printf("Numéro du quai : %d\n",quai1->NumeroQuai);
         printf("Taille du quai : %d\n",quai1->QuaiSize);
         printf("Profondeur du quai : %d\n",quai1->Profondeur);
-        printf("Type de navire : %s\n",quai1->Type);
+        printf("Type de navire : %s\n",quai1->Type); // NE FONCTIONNE PAS
         printf("Nombre maximum de navires accostés : %d\n",quai1->MaxNaviresAccostés);
         quai1 = quai1->NextNavire;
     }
@@ -103,7 +103,7 @@ void AfficherNavire(Navire* navire){
     Navire* navire1 = navire;
     //while (navire1 != NULL) {
     printf("Identifiant du navire : %d\n",navire1->id);
-    printf("Type de navire : %s\n",navire1->type);
+    printf("Type de navire : %s\n",navire1->type); // NE FONCTIONNE PAS
     printf("Etat du navire : %s\n",navire1->etat);
     printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
     //}
