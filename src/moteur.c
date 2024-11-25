@@ -3,12 +3,11 @@
 Quai* CreerQuai(Quai* quai){
     Quai* quai1 = malloc(sizeof(Quai));
 
-    printf("Choisissez le numéro du quai : ");
-    scanf("%d", &quai1->NumeroQuai);
+    printf("type de quai : petroliernuméro du quai : 1");
+    
     printf("\n");
     
-    printf("Choisissez la taille du quai : ");
-    scanf("%d", &quai1->QuaiSize);
+    printf("taille du quai : ");
     printf("\n");
     
     printf("Choisissez la profondeur du quai : ");
@@ -42,7 +41,7 @@ Quai* CreerQuai(Quai* quai){
 }
 
 Navire* CreerNavire(Navire* navire){
-    Navire* navire1 = malloc(sizeof(Navire));
+    Navire* navire1 = malloc(sizeof(Navire));                                                                                                                                                                                                                                                                                                                                                                   
     //if (navire1 == NULL) {return NULL;}
 
     printf("Choisissez l'identifiant du navire : ");
@@ -124,3 +123,91 @@ void AjouterFinListeNavire(Navire* navire, Navire* new) {
     current->NextNavire = new;
     new->NextNavire = NULL;
 }
+mouillage 0 , passager 1 , marchand 2, yacht 4, petrolier3
+Quai* distibNavires(Navires *navire, Port*port){
+   if(  navire->type ==NavirePassagers &&  QuaiPassagers->MaxNaviresAccostés < 4){
+    QuaiPassagers->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 1 ;
+    return QuaiPassagers;
+    printf("navire passagers +1");
+   }else if (mouillage->MaxNaviresAccostés < 4){
+    mouillage->MaxNaviresAccostés ++;
+    navire->NumeroQuai = 0 ; 
+     return mouillage ; 
+    printf("bateau au quai de mouillage");
+   }else { supprime (navire) ; 
+   printf("navire supprime");
+   return ; }
+
+if(  navire->type == NavireMarchand &&  QuaiMarchand->MaxNaviresAccostés < 4){
+    QuaiMarchand->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 2 ;
+    return QuaiMarchand ; 
+   }else if (mouillage->MaxNaviresAccostés < 4){
+    mouillage->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 0 ;
+     return mouillage ; 
+   }else { supprime (navire) ; 
+   printf("navire supprime");
+   return ;}
+
+   if(  navire->type ==Petrolier &&  QuaiPetrolier->MaxNaviresAccostés < 4){
+    QuaiPetrolier->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 3 ;
+    return QuaiPetrolier;
+
+   }else if (mouillage->MaxNaviresAccostés < 4){
+    mouillage->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 0 ;
+     return mouillage ; 
+   }else { supprime (navire) ; 
+   printf("navire supprime");
+   return ;}
+if(  navire->type ==Yacht &&  QuaiYacht->MaxNaviresAccostés < 4){
+    QuaiYacht->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 4 ;
+    return QuaiYacht ; 
+   }else if (mouillage->MaxNaviresAccostés < 4){
+    mouillage->MaxNaviresAccostés ++; 
+    navire->NumeroQuai = 0 ;
+    return mouillage ; 
+   }else { supprime (navire) ; 
+   printf("navire supprime");
+   return ;}
+}
+
+void gestionMouillage ( Navires* navire, int etatBouton){
+    if (etatBouton ==1) { 
+        printf("Bouton presse");
+    distibNavires(navire, Quai*quai);
+    printf("navires en zone de mouillage vont aux quais si y a de la place ")}
+
+return ; 
+}
+
+int etatBouton ( ){
+    printf("clip de la souris sur le bouton ");
+    return 1 ; 
+    else return 0 ;  
+}
+
+
+// plutot que de demander à l'utilisateur l'état du bateau , on le fait aleatoiremement
+srand(time(NULL));
+int case = rand()%4+1;
+switch (case){
+    case 1 : strcpy(navire1->etat, "en mer");
+    break; 
+    case 2 : strcpy(navire1->etat, "accosté");
+    distibNavires(navires1) ; 
+ 
+    break ; 
+    case 3 : strcpy(navire1->etat, "en attente");
+    NumeroQuai = 0;
+    break ; 
+default:
+            printf("Erreur : case non définie\n");
+            break;
+    }
+}
+
