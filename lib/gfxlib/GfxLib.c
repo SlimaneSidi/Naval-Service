@@ -267,7 +267,7 @@ void lanceBoucleEvenements(void)
 	boucleEvenementsLancee = true;
 	
 	/* Lance le message d'initialisation de la boucle d'evenements */
-	gestionEvenement(Initialisation);
+	gestionEvene²ment(Initialisation);
 
 	/* Lance la boucle GLUT de gestion des evenements */
 	glutMainLoop();
