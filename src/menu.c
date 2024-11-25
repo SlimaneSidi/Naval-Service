@@ -38,12 +38,14 @@ void menu(Quai* quai, Navire* navire){
         case 3 : 
             printf("\n");
             printf("--- Afficher les quais ---\n\n");
+            AjouterFinListeQuai(quai, quai);
             AfficherQuai(quai);
             printf("\n\n");
             break;
         case 4 : 
             printf("\n");
             printf("--- Afficher les navires ---\n\n");
+            AjouterFinListeNavire(navire, navire);
             AfficherNavire(navire);
             printf("\n\n");
             break;

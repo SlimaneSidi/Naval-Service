@@ -108,3 +108,19 @@ void AfficherNavire(Navire* navire){
     printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
     //}
 }
+
+void AjouterFinListeQuai(Quai* quai, Quai* new) {
+    if (quai == NULL) {quai = new; return;}
+    Quai* current = quai;
+    while (current->NextNavire != NULL) {current = current->NextNavire;}
+    current->NextNavire = new;
+    new->NextNavire = NULL;
+}
+
+void AjouterFinListeNavire(Navire* navire, Navire* new) {
+    if (navire == NULL) {navire = new; return;}
+    Navire* current = navire;
+    while (current->NextNavire != NULL) {current = current->NextNavire;}
+    current->NextNavire = new;
+    new->NextNavire = NULL;
+}
