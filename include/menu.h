@@ -2,6 +2,6 @@
 #define MENU_H
 #include "moteur.h"
 
-void menu(Quai* quai, Navire* navire);
+void menu(Port* port, Navire* navire);
 
 #endif
