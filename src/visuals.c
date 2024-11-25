@@ -1,6 +1,5 @@
-
 #include "../include/visuals.h"
-void drawBoat();
+
 
 void drawBoat() {
     // Initialize the graphics window
