@@ -1,5 +1,6 @@
 #include "../include/menu.h"
 #include "../include/moteur.h"
+#include "../include/visuals.h"
 
 void menu(Quai* quai, Navire* navire){
     int i = 1;
@@ -13,6 +14,7 @@ void menu(Quai* quai, Navire* navire){
         printf("2 - Créer un navire\n");
         printf("3 - Afficher les quais\n");
         printf("4 - Afficher les navires\n");
+        printf("5 - dessiner bateau\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -47,6 +49,12 @@ void menu(Quai* quai, Navire* navire){
             printf("--- Afficher les navires ---\n\n");
             AjouterFinListeNavire(navire, navire);
             AfficherNavire(navire);
+            printf("\n\n");
+            break;
+        case 5 :
+            printf("\n");
+            printf("--- Dessiner bateau ---\n\n");
+            drawBoat();
             printf("\n\n");
             break;
 

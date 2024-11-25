@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../include/moteur.h"
 #include "../include/menu.h"
+#include "../include/visuals.h"
 
 int main(void)
 {
