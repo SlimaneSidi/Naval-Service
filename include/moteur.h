@@ -41,7 +41,7 @@ typedef struct Quai{
     //int QuaiSize; //en mêtres
     int Profondeur;
     TypeNavire Type;
-    int NbNaviresAccostés;
+    int NbNaviresAccostes;
     struct Navire* NextNavire;     //Liste chaînée des navires en attente d'accostage
 }Quai;
 

@@ -23,7 +23,7 @@ Port* initQuai(){
     port->QuaiPassager->NumeroQuai = 1; //id
     port->QuaiPassager->Profondeur = 10;
     port->QuaiPassager->Type = NAVIRE_PASSAGERS;
-    port->QuaiPassager->NbNaviresAccostés = 4;
+    port->QuaiPassager->NbNaviresAccostes = 4;
     port->QuaiPassager->NextNavire = NULL;
 
     port->QuaiMarchand = malloc(sizeof(Quai));   // MARCHAND
@@ -31,7 +31,7 @@ Port* initQuai(){
     port->QuaiMarchand->NumeroQuai = 2; //id
     port->QuaiMarchand->Profondeur = 10;
     port->QuaiMarchand->Type = NAVIRE_MARCHANDISES;
-    port->QuaiMarchand->NbNaviresAccostés = 3;
+    port->QuaiMarchand->NbNaviresAccostes = 3;
     port->QuaiMarchand->NextNavire = NULL;
 
     port->QuaiPetrolier = malloc(sizeof(Quai));   // PETROLIER
@@ -39,7 +39,7 @@ Port* initQuai(){
     port->QuaiPetrolier->NumeroQuai = 3; //id
     port->QuaiPetrolier->Profondeur = 10;
     port->QuaiPetrolier->Type = NAVIRE_PETROLIER;
-    port->QuaiPetrolier->NbNaviresAccostés = 1;
+    port->QuaiPetrolier->NbNaviresAccostes = 1;
     port->QuaiPetrolier->NextNavire = NULL;
 
     port->QuaiYacht = malloc(sizeof(Quai));   // YACHT
@@ -47,7 +47,7 @@ Port* initQuai(){
     port->QuaiYacht->NumeroQuai = 4; //id
     port->QuaiYacht->Profondeur = 10;
     port->QuaiYacht->Type = NAVIRE_YACHT;
-    port->QuaiYacht->NbNaviresAccostés = 3;
+    port->QuaiYacht->NbNaviresAccostes = 3;
     port->QuaiYacht->NextNavire = NULL;
 
     port->QuaiMouillage = malloc(sizeof(Quai));  // MOUILLAGE
@@ -55,7 +55,7 @@ Port* initQuai(){
     port->QuaiMouillage->NumeroQuai = 0; //id
     port->QuaiMouillage->Profondeur = 10;
     port->QuaiMouillage->Type = NAVIRE_ALL;
-    port->QuaiMouillage->NbNaviresAccostés = 4;
+    port->QuaiMouillage->NbNaviresAccostes = 4;
     port->QuaiMouillage->NextNavire = NULL;
 
     return port;
@@ -123,35 +123,35 @@ void AfficherQuai(Port* port){
     //printf("Taille du quai : %d\n",port1->QuaiPassager->QuaiSize);
     printf("Profondeur du quai : %d\n",port1->QuaiPassager->Profondeur);
     printf("Type de navire : %s\n",TypeNavireToString(port1->QuaiPassager->Type)); 
-    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiPassager->NbNaviresAccostés);
+    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiPassager->NbNaviresAccostes);
 
     printf("-- %s : \n",port1->QuaiMarchand->nom);
     printf("Numéro du quai : %d\n",port1->QuaiMarchand->NumeroQuai);   // MARCHAND
     //printf("Taille du quai : %d\n",port1->QuaiMarchand->QuaiSize);
     printf("Profondeur du quai : %d\n",port1->QuaiMarchand->Profondeur);
     printf("Type de navire : %s\n",TypeNavireToString(port1->QuaiMarchand->Type)); 
-    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiMarchand->NbNaviresAccostés);
+    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiMarchand->NbNaviresAccostes);
 
     printf("-- %s : \n",port1->QuaiPetrolier->nom);
     printf("Numéro du quai : %d\n",port1->QuaiPetrolier->NumeroQuai);   // PETROLIER
     //printf("Taille du quai : %d\n",port1->QuaiPetrolier->QuaiSize);
     printf("Profondeur du quai : %d\n",port1->QuaiPetrolier->Profondeur);
     printf("Type de navire : %s\n",TypeNavireToString(port1->QuaiPetrolier->Type)); 
-    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiPetrolier->NbNaviresAccostés);
+    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiPetrolier->NbNaviresAccostes);
 
     printf("-- %s : \n",port1->QuaiYacht->nom);
     printf("Numéro du quai : %d\n",port1->QuaiYacht->NumeroQuai);   // YACHT
     //printf("Taille du quai : %d\n",port1->QuaiYacht->QuaiSize);
     printf("Profondeur du quai : %d\n",port1->QuaiYacht->Profondeur);
     printf("Type de navire : %s\n",TypeNavireToString(port1->QuaiYacht->Type));
-    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiYacht->NbNaviresAccostés);
+    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiYacht->NbNaviresAccostes);
 
     printf("-- %s : \n",port1->QuaiMouillage->nom);
     printf("Numéro du quai : %d\n",port1->QuaiMouillage->NumeroQuai);  // MOUILLAGE
     //printf("Taille du quai : %d\n",port1->QuaiMouillage->QuaiSize);
     printf("Profondeur du quai : %d\n",port1->QuaiMouillage->Profondeur);
     printf("Type de navire : %s\n",TypeNavireToString(port1->QuaiMouillage->Type));
-    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiMouillage->NbNaviresAccostés);
+    printf("Nombre maximum de navires accostés : %d\n\n",port1->QuaiMouillage->NbNaviresAccostes);
 }
 
 void AfficherNavire(Navire* navire){
