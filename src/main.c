@@ -5,9 +5,9 @@
 
 int main(void)
 {   
-    Navire* navire = NULL;   
+    Navire* navireList = NULL;   
     Port* port = malloc(sizeof(Port));
     port = initQuai();
-    menu(port, navire);
+    menu(port, navireList);
     return 0;
 }

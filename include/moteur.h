@@ -19,25 +19,27 @@ typedef struct TYPE_NAVIRE{
 }TYPE_NAVIRE;
 
 typedef enum TypeNavire{
-    NAVIRE_PASSAGERS,       // = 0  place par quai : 4
-    NAVIRE_MARCHANDISES,    // = 1  place par quai : 3
-    PETROLIER,              // = 2  place par quai : 1
-    YACHT                   // = 3  place par quai : 3
+    NAVIRE_ALL,             // = 0  
+    NAVIRE_PASSAGERS,       // = 1  place par quai : 4
+    NAVIRE_MARCHANDISES,    // = 2  place par quai : 3
+    NAVIRE_PETROLIER,       // = 3  place par quai : 1
+    NAVIRE_YACHT            // = 4  place par quai : 3
 }TypeNavire;
 
 typedef struct Navire{
     int id;
-    TypeNavire* type;
+    TypeNavire type;
     char etat[SIZE];        // (en mer, accosté, en attente)
     int CapaciteChargement; // (en tonnes)
     struct Navire* NextNavire;
 }Navire;
 
 typedef struct Quai{
+    char nom[SIZE];
     int NumeroQuai;
     //int QuaiSize; //en mêtres
     int Profondeur;
-    TypeNavire* Type;
+    TypeNavire Type;
     int NbNaviresAccostés;
     struct Navire* NextNavire;     //Liste chaînée des navires en attente d'accostage
 }Quai;

@@ -3,11 +3,11 @@
 
 void menu(Port* port, Navire* navire){
     int i = 1;
+    //Navire* navire1 = malloc(sizeof(Navire));
     printf("\n");
     printf("-----------------LOGICIEL-NAVAL-SERVICE------------------\n\n");
 
     while(i != 0){
-
         printf("----- QUE VOULEZ VOUS FAIRE ? -----\n\n");
         printf("1 - Créer un navire\n");
         printf("2 - Afficher les quais\n");
@@ -17,15 +17,19 @@ void menu(Port* port, Navire* navire){
         int choix = 0; 
         scanf("%d",&choix);
 
-        switch(choix)
-        {
+        switch(choix){
         case 0 :   // QUITTER
             i = 0;
             break;
         case 1 : 
             printf("\n");
             printf("--- Créer un navire ---\n\n");
-            navire = CreerNavire(navire);
+            Navire* newNavire = CreerNavire(NULL); // Crée un nouveau navire
+            AjouterFinListeNavire(navire, newNavire); // Ajoute le navire à la liste
+            if (navire == NULL) {
+                navire = newNavire; // Si la liste était vide, on met à jour la tête
+            }
+            //navire = CreerNavire(navire);
             printf("\n\n");
             break;
         case 2 : 
@@ -37,11 +41,9 @@ void menu(Port* port, Navire* navire){
         case 3 : 
             printf("\n");
             printf("--- Afficher les navires ---\n\n");
-            AjouterFinListeNavire(navire, navire);
             AfficherNavire(navire);
             printf("\n\n");
             break;
-// rajouter ici
         default:
         printf("error");
         }
