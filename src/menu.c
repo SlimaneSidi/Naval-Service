@@ -1,5 +1,6 @@
 #include "../include/menu.h"
 #include "../include/moteur.h"
+#include "../include/nomBateaux.h"
 
 void menu(Port* port, Navire* navire){
     int i = 1;
@@ -24,6 +25,7 @@ void menu(Port* port, Navire* navire){
         case 1 : 
             printf("\n");
             printf("--- Créer un navire ---\n\n");
+            choisirNomAleatoire(nomsBateaux, TAILLE);
             Navire* newNavire = CreerNavire(NULL); // Crée un nouveau navire
             AjouterFinListeNavire(navire, newNavire); // Ajoute le navire à la liste
             if (navire == NULL) {

@@ -27,6 +27,7 @@ typedef enum TypeNavire{
 }TypeNavire;
 
 typedef struct Navire{
+    char nom[SIZE];
     int id;
     TypeNavire type;
     char etat[SIZE];        // (en mer, accosté, en attente)
