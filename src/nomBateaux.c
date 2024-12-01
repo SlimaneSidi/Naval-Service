@@ -1,16 +1,6 @@
 #include "../include/nomBateaux.h"
 #include "../include/moteur.h"
 
-/*char* choisirNomAleatoire(const char* nomsBateaux[], int taille) {
-    if (taille <= 0) return NULL; 
-    char nom[50];
-    int index = rand() % taille; 
-    nom = nomsBateaux[index];
-    printf("%s", nom);
-    return nom;
-}*/
-
-// Liste de 40 noms de bateaux
 const char* nomsBateaux[40] = {
     "L'Océanique",
     "Le Venturier",
