@@ -1,5 +1,6 @@
 #include "../include/menu.h"
 #include "../include/moteur.h"
+#include "../include/save.h"
 
 void menu(Quai* quai, Navire* navire){
     int i = 1;
@@ -13,6 +14,7 @@ void menu(Quai* quai, Navire* navire){
         printf("2 - Créer un navire\n");
         printf("3 - Afficher les quais\n");
         printf("4 - Afficher les navires\n");
+        printf("5 - Sauvegarder les quais et les navires\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -45,6 +47,13 @@ void menu(Quai* quai, Navire* navire){
             printf("\n");
             printf("--- Afficher les navires ---\n\n");
             AfficherNavire(navire);
+            printf("\n\n");
+            break;
+        case 5 :
+            printf("\n");
+            printf("--- Afficher la sauvegarde ---\n\n");
+            saveNavalService;
+            AfficherSauvegarde;
             printf("\n\n");
             break;
 
