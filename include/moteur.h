@@ -14,24 +14,24 @@
 typedef struct TYPE_NAVIRE{
     char NavirePassagers[SIZE];   //= "navire de passagers";
     char NavireMarchand[SIZE];    //= "navire de marchandises";
-    char Petrolier[SIZE];          // =  "pétrolier";
+    char Petrolier[SIZE];         // =  "pétrolier";
     char Yacht[SIZE];             // = "yacht";
 }TYPE_NAVIRE;
 
 typedef enum TypeNavire{
     NAVIRE_ALL,             // = 0  
-    NAVIRE_PASSAGERS,       // = 1  place par quai : 4
-    NAVIRE_MARCHANDISES,    // = 2  place par quai : 3
-    NAVIRE_PETROLIER,       // = 3  place par quai : 1
-    NAVIRE_YACHT            // = 4  place par quai : 3
+    NAVIRE_PASSAGERS,       // = 1  
+    NAVIRE_MARCHANDISES,    // = 2  
+    NAVIRE_PETROLIER,       // = 3  
+    NAVIRE_YACHT            // = 4  
 }TypeNavire;
 
 typedef struct Navire{
-    char nom[SIZE];
+    char* nom;
     int id;
     TypeNavire type;
-    char etat[SIZE];        // (en mer, accosté, en attente)
-    int CapaciteChargement; // (en tonnes)
+    char etat[SIZE];            // (en mer, accosté, en attente)
+    int CapaciteChargement;     // (en tonnes)
     struct Navire* NextNavire;
 }Navire;
 
@@ -46,11 +46,11 @@ typedef struct Quai{
 }Quai;
 
 typedef struct Port{
-    Quai* QuaiPassager;
-    Quai* QuaiMarchand;
-    Quai* QuaiPetrolier;
-    Quai* QuaiYacht;
-    Quai* QuaiMouillage;
+    Quai* QuaiPassager;     // place par quai : 4
+    Quai* QuaiMarchand;     // place par quai : 3
+    Quai* QuaiPetrolier;    // place par quai : 1
+    Quai* QuaiYacht;        // place par quai : 3
+    Quai* QuaiMouillage;    // place par quai : 5 (a voir)
 }Port;
 
 Port* initQuai();

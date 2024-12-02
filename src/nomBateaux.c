@@ -50,6 +50,5 @@ char* choisirNomAleatoire(const char* nomsBateaux[], int taille) {
     char* nom = malloc(strlen(nomsBateaux[index]) + 1); // Allouer de la mémoire pour le nom
     if (nom == NULL) return NULL; // Vérifier si l'allocation a réussi
     strcpy(nom, nomsBateaux[index]); // Copier le nom
-    printf("Nom du bateau : %s\n", nom);
     return nom;
 }

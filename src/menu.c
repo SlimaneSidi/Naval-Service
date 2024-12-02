@@ -4,7 +4,6 @@
 
 void menu(Port* port, Navire* navire){
     int i = 1;
-    //Navire* navire1 = malloc(sizeof(Navire));
     printf("\n");
     printf("-----------------LOGICIEL-NAVAL-SERVICE------------------\n\n");
 
@@ -26,12 +25,11 @@ void menu(Port* port, Navire* navire){
             printf("\n");
             printf("--- Créer un navire ---\n\n");
             choisirNomAleatoire(nomsBateaux, TAILLE);
-            Navire* newNavire = CreerNavire(NULL); // Crée un nouveau navire
-            AjouterFinListeNavire(navire, newNavire); // Ajoute le navire à la liste
+            Navire* newNavire = CreerNavire(NULL); 
+            AjouterFinListeNavire(navire, newNavire);
             if (navire == NULL) {
-                navire = newNavire; // Si la liste était vide, on met à jour la tête
+                navire = newNavire;
             }
-            //navire = CreerNavire(navire);
             printf("\n\n");
             break;
         case 2 : 

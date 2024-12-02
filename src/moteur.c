@@ -1,18 +1,13 @@
 #include "../include/moteur.h"
+#include "../include/nomBateaux.h"
 
 const char* TypeNavireToString(TypeNavire type) {
     switch (type) {
-        case NAVIRE_PASSAGERS:
-            return "Navire de passagers";
-        case NAVIRE_MARCHANDISES:
-            return "Navire de marchandises";
-        case NAVIRE_PETROLIER:
-            return "Pétrolier";
-        case NAVIRE_YACHT:
-            return "Yacht";
-        default:
-            return "Inconnu";
-    }
+        case NAVIRE_PASSAGERS: return "Navire de passagers";
+        case NAVIRE_MARCHANDISES: return "Navire de marchandises";
+        case NAVIRE_PETROLIER: return "Pétrolier";
+        case NAVIRE_YACHT: return "Yacht";
+        default: return "Inconnu"; }
 }
 
 Port* initQuai(){
@@ -69,13 +64,16 @@ void AjouterFinListeNavire(Navire* navire, Navire* new) {
     new->NextNavire = NULL;
 }
 
-Navire* CreerNavire(Navire* navire){
+Navire* CreerNavire(Navire* navire) {
     static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
-    navire1->id = id_counter++;
-    printf("Identifiant du navire : %d\n",navire1->id);
-    printf("\n");
 
+    const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
+    navire1->nom = malloc(strlen(nomAleatoire) + 1);
+    strcpy(navire1->nom, nomAleatoire);
+    printf("Nom du navire : %s\n\n",navire1->nom);
+    navire1->id = id_counter++;
+    printf("Identifiant du navire : %d\n\n",navire1->id);
     printf("Choisissez le type de navire (NavirePassager (1), NavireMarchand (2), Petrolier (3), ou Yacht (4)) : ");
     int typeTemp;
     scanf("%d", &typeTemp);
@@ -111,7 +109,6 @@ Navire* CreerNavire(Navire* navire){
     scanf("%d", &navire1->CapaciteChargement);
     printf("\n");
 
-    //AjouterFinListeNavire(navire, navire1);
     return navire1;
 }
 
@@ -158,6 +155,7 @@ void AfficherNavire(Navire* navire){
     if (navire == NULL) {printf("Aucun navire n'a été créé\n"); return;}
     Navire* navire1 = navire;
     while (navire1 != NULL) {
+        printf("Nom du navire : %s\n",navire1->nom);
         printf("Identifiant du navire : %d\n",navire1->id);
         printf("Type de navire : %s\n",TypeNavireToString(navire1->type));
         printf("Etat du navire : %s\n",navire1->etat);
