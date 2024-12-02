@@ -123,7 +123,7 @@ void AjouterFinListeNavire(Navire* navire, Navire* new) {
     current->NextNavire = new;
     new->NextNavire = NULL;
 }
-mouillage 0 , passager 1 , marchand 2, yacht 4, petrolier3
+//mouillage 0 , passager 1 , marchand 2, yacht 4, petrolier 3
 Quai* distibNavires(Navires *navire, Port*port){
    if(  navire->type ==NavirePassagers &&  QuaiPassagers->MaxNaviresAccostés < 4){
     QuaiPassagers->MaxNaviresAccostés ++; 
@@ -132,6 +132,8 @@ Quai* distibNavires(Navires *navire, Port*port){
     printf("navire passagers +1");
    }else if (mouillage->MaxNaviresAccostés < 4){
     mouillage->MaxNaviresAccostés ++;
+    strcpy(navire->etat, "accosté");
+   
     navire->NumeroQuai = 0 ; 
      return mouillage ; 
     printf("bateau au quai de mouillage");
@@ -142,6 +144,7 @@ Quai* distibNavires(Navires *navire, Port*port){
 if(  navire->type == NavireMarchand &&  QuaiMarchand->MaxNaviresAccostés < 4){
     QuaiMarchand->MaxNaviresAccostés ++; 
     navire->NumeroQuai = 2 ;
+    strcpy(navire->etat, "accosté");
     return QuaiMarchand ; 
    }else if (mouillage->MaxNaviresAccostés < 4){
     mouillage->MaxNaviresAccostés ++; 
@@ -154,6 +157,7 @@ if(  navire->type == NavireMarchand &&  QuaiMarchand->MaxNaviresAccostés < 4){
    if(  navire->type ==Petrolier &&  QuaiPetrolier->MaxNaviresAccostés < 4){
     QuaiPetrolier->MaxNaviresAccostés ++; 
     navire->NumeroQuai = 3 ;
+    strcpy(navire->etat, "accosté");
     return QuaiPetrolier;
 
    }else if (mouillage->MaxNaviresAccostés < 4){
@@ -166,6 +170,7 @@ if(  navire->type == NavireMarchand &&  QuaiMarchand->MaxNaviresAccostés < 4){
 if(  navire->type ==Yacht &&  QuaiYacht->MaxNaviresAccostés < 4){
     QuaiYacht->MaxNaviresAccostés ++; 
     navire->NumeroQuai = 4 ;
+     strcpy(navire->etat, "accosté");
     return QuaiYacht ; 
    }else if (mouillage->MaxNaviresAccostés < 4){
     mouillage->MaxNaviresAccostés ++; 
@@ -177,23 +182,28 @@ if(  navire->type ==Yacht &&  QuaiYacht->MaxNaviresAccostés < 4){
 }
 
 void gestionMouillage ( Navires* navire, int etatBouton){
+    strcpy(navire1->etat, "en attente");
+    NumeroQuai = 0;
     if (etatBouton ==1) { 
         printf("Bouton presse");
+        printf("navires en zone de mouillage vont aux quais si y a de la place ");
     distibNavires(navire, Quai*quai);
-    printf("navires en zone de mouillage vont aux quais si y a de la place ")}
+    }
 
 return ; 
 }
 
 int etatBouton ( ){
-    printf("clip de la souris sur le bouton ");
-    return 1 ; 
-    else return 0 ;  
+    printf("clic de la souris sur le bouton ");
+    //return 1 ; 
+    //else return 0 ;  
+    //pour tester le programme :
+    retrun 1 ; 
 }
 
 
 // plutot que de demander à l'utilisateur l'état du bateau , on le fait aleatoiremement
-srand(time(NULL));
+/*srand(time(NULL));
 int case = rand()%4+1;
 switch (case){
     case 1 : strcpy(navire1->etat, "en mer");
@@ -209,5 +219,34 @@ default:
             printf("Erreur : case non définie\n");
             break;
     }
-}
+} */
+//faire un timeur pour enerer des bateaux au bout d'un certain temps et les envoyer en moiuillage
+// nom fonction : delay avec srand et differents temps aleatoires 
+// fonction gestion mouillage retourne un etat pour lequel distrib se fait
+void delay () {
+    srand(time(NULL));
 
+    // 3 differents temps d'attente en secondes
+    int delais[] = {5, 10, 30};
+    int taille = sizeof(delais) / sizeof(delais[0]);
+    //la division de la taille totale du tableau par la taille d'un élément => le nombre total d'éléments dans le tableau
+
+    for (int i = 0; i < 140; i++) { 
+
+        int cas = rand() % taille;
+        int temps_attente = delais[cas];
+
+        printf("Nouveau bateau dans %d secondes... \n", temps_attente);
+        while( temps_attente != 0 ){
+       temps_attente -- ; 
+        }
+
+        printf("bateau genere");//on va devoir generer le bateau => appel de la fonction
+        gestionMouillage ( Navires* navires)
+    } char reponse = '/0'
+    printf("souhaitez-vous continuer à generer des bateaux ? O/N");
+    scanf("%s", reponse);
+    if (reponse == 'O'){
+        void delay() ; } 
+    }
+}

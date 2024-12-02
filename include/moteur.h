@@ -41,5 +41,9 @@ void AfficherQuai(Quai* quai);
 void AfficherNavire(Navire* navire);
 void AjouterFinListeQuai(Quai* quai, Quai* new);
 void AjouterFinListeNavire(Navire* navire, Navire* new);
+Quai* distibNavires(Navires *navire, Port*port);
+void gestionMouillage ( Navires* navire, int etatBouton);
+int etatBouton ( );
+void delay ();
 
 #endif
