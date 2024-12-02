@@ -1,6 +1,7 @@
 #include "../include/menu.h"
 #include "../include/moteur.h"
 #include "../include/nomBateaux.h"
+#include "../include/visuals.h"
 
 void menu(Port* port, Navire* navire){
     int i = 1;
