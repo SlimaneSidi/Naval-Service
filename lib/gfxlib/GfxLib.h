@@ -80,7 +80,6 @@
 #define false (!true)*/
 
 
-
 /* Partie publique basique
    Cette partie est relative a toutes les informations utiles pour
    mettre en place simplement un environnement graphique portable */
