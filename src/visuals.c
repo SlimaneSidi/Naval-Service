@@ -35,15 +35,12 @@ void gestionEvenement(EvenementGfx evenement)
 	
 	static bool pleinEcran = false; // Pour savoir si on est en mode plein ecran ou pas
 	static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
-
-	/* On va aussi animer une balle traversant l'ecran */
-	
 	
 	switch (evenement)
 	{
 		case Initialisation:
 			
-			image = lisBMPRGB("ISEN.bmp");
+			image = lisBMPRGB("data/img/ISEN.bmp");
 			demandeTemporisation(20);
 			break;
 		
@@ -62,23 +59,23 @@ void gestionEvenement(EvenementGfx evenement)
 
 
 			////////////////////////     BATEAU    ////////////////////////////////////////
+		
+
 			couleurCourante(0, 0, 255);
 
             // Draw the hull of the boat
-            ligne(200, 200, 600, 200);
-            ligne(200, 200, 300, 100);
-            ligne(600, 200, 500, 100);
-            ligne(300, 100, 500, 100);
+            triangle(200, 200, 600, 200, 300, 100);
+            triangle(600, 200, 500, 100, 300, 100);
 
             // Set the color to white for the sail
             couleurCourante(255, 255, 255);
 
             // Draw the sail of the boat
-            ligne(400, 200, 400, 400);
-            ligne(400, 400, 500, 200);
+            triangle(400, 200, 400, 400, 500, 200);
 
-
+            
             rafraichisFenetre();
+
 
 			///////////////////////////////////////////////////////////////
 

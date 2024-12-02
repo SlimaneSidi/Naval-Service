@@ -7,6 +7,9 @@ SRC := ./src
 SRCFILES := main.c moteur.c menu.c nomBateaux.c visuals.c
 OBJFILES := $(patsubst %.c, $(BUILDDIR)/%.o, $(SRCFILES))
 
+export MESA_LOADER_DRIVER_OVERRIDE = zink
+export LIBGL_ALWAYS_SOFTWARE = 1
+
 all: $(BUILDDIR) exec
 
 $(BUILDDIR):
