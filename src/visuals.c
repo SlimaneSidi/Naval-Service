@@ -40,7 +40,7 @@ void gestionEvenement(EvenementGfx evenement)
 	{
 		case Initialisation:
 			
-			image = lisBMPRGB("ISEN.bmp");
+			image = lisBMPRGB("data/img/ISEN.bmp");
 			demandeTemporisation(20);
 			break;
 		
