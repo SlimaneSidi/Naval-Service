@@ -4,10 +4,10 @@
 #include "../include/menu.h"
 
 int main(void)
-{
-    Navire* navire = NULL;
-    Quai* quai = malloc(sizeof(Quai));   
-    
-    menu(quai, navire);
+{   
+    Navire* navireList = NULL;   
+    Port* port = malloc(sizeof(Port));
+    port = initQuai();
+    menu(port, navireList);
     return 0;
 }
