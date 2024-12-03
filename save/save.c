@@ -2,9 +2,13 @@
 #include "../include/save.h"
 
 void saveNavalService(Navire* navire, const char* filename) {
+    if (navire == NULL) {
+        printf("Il n'y a aucun navires à sauvegarder.\n");
+        return;
+    }
     FILE* fichier = fopen(filename, "wb");
     if (fichier == NULL) {
-        printf("Erreur lors de l'ouverture du fichier");
+        printf("Erreur lors de l'ouverture du fichier.\n");
         return;
     }
     fprintf(fichier, "Navire ID: %d\n", navire->id);
