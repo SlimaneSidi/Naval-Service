@@ -1,9 +1,7 @@
 #ifndef VISUALS_H
 #define VISUALS_H
 
-#include <stdlib.h> // Pour pouvoir utiliser exit()
-#include <stdio.h> // Pour pouvoir utiliser printf()
-#include <math.h> // Pour pouvoir utiliser sin() et cos()
+#include "moteur.h"
 #include "../lib/gfxlib/GfxLib.h" // Seul cet include est necessaire pour faire du graphique
 #include "../lib/gfxlib/BmpLib.h" // Cet include permet de manipuler des fichiers BMP
 #include "../lib/gfxlib/ESLib.h" // Pour utiliser valeurAleatoire()
@@ -17,8 +15,9 @@ extern int DrawNB; // Variable globale pour savoir quel dessin effectuer
 int InitGFXMain(int argc, char **argv);
 void cercle(float centreX, float centreY, float rayon);
 void gestionEvenement(EvenementGfx evenement);
-void Draw1();
 int GetDrawNB(int NB);
+void Draw1();
+void Draw2();
 
 
 

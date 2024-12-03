@@ -5,6 +5,7 @@
 #include "../include/visuals.h"
 
 void menu(Port* port, Navire* navire){
+    int argc = 0; char **argv = NULL;
     int i = 1;
     printf("\n");
     printf("-----------------LOGICIEL-NAVAL-SERVICE------------------\n\n");
@@ -17,6 +18,7 @@ void menu(Port* port, Navire* navire){
         printf("4 - Afficher les navires\n");
         printf("5 - Sauvegarder les quais et les navires\n");
         printf("6 - dessiner bateau\n");
+        printf("7 - dessiner bateau2\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -70,11 +72,19 @@ void menu(Port* port, Navire* navire){
 
         case 6 :
 
-            int argc = 0; char **argv = NULL;
             printf("\n");
             printf("--- Dessiner bateau ---\n\n");
             printf("\n\n");
             GetDrawNB(6);
+            InitGFXMain(argc, argv);
+            break;
+
+        case 7 :
+
+            printf("\n");
+            printf("--- Dessiner bateau 2  ---\n\n");
+            printf("\n\n");
+            GetDrawNB(7);
             InitGFXMain(argc, argv);
             break;
             
