@@ -112,6 +112,26 @@ Navire* CreerNavire(Navire* navire) {
     return navire1;
 }
 
+Navire* CreerNavireAleatoire(Navire* navire){
+    static int id_counter = 1; // ID du navire
+    Navire* navire1 = malloc(sizeof(Navire));
+
+    const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
+    navire1->nom = malloc(strlen(nomAleatoire) + 1);
+    strcpy(navire1->nom, nomAleatoire);
+    printf("Nom du navire : %s\n\n",navire1->nom);
+    navire1->id = id_counter++;
+    printf("Identifiant du navire : %d\n\n",navire1->id);
+    navire1->type = rand() % 4 + 1;
+    printf("Type de navire : %s\n\n",TypeNavireToString(navire1->type));
+    strcpy(navire1->etat, "en mer");
+    printf("Etat du navire : %s\n\n",navire1->etat);
+    navire1->CapaciteChargement = rand() % 1000 + 1;
+    printf("Capacité de chargement du navire : %d\n\n",navire1->CapaciteChargement);
+
+    return navire1;
+}
+
 void AfficherQuai(Port* port){
     Port* port1 = port;
 

@@ -56,6 +56,7 @@ typedef struct Port{
 Port* initQuai();
 Quai* CreerQuai(Quai* quai);
 Navire* CreerNavire(Navire* navire);
+Navire* CreerNavireAleatoire(Navire* navire);
 void AfficherQuai(Port* port);
 void AfficherNavire(Navire* navire);
 void AjouterFinListeQuai(Quai* quai, Quai* new);
