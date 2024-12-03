@@ -1,6 +1,7 @@
 #include "../include/menu.h"
 #include "../include/moteur.h"
 #include "../include/nomBateaux.h"
+#include "../include/save.h"
 #include "../include/visuals.h"
 
 void menu(Port* port, Navire* navire){
@@ -13,7 +14,8 @@ void menu(Port* port, Navire* navire){
         printf("1 - Créer un navire\n");
         printf("2 - Afficher les quais\n");
         printf("3 - Afficher les navires\n");
-         printf("5 - dessiner bateau\n");
+        printf("4 - Sauvegarder les quais et les navires\n");
+        printf("5 - dessiner bateau\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -44,6 +46,13 @@ void menu(Port* port, Navire* navire){
             printf("\n");
             printf("--- Afficher les navires ---\n\n");
             AfficherNavire(navire);
+            printf("\n\n");
+            break;
+        case 4 :
+            printf("\n");
+            printf("--- Afficher la sauvegarde ---\n\n");
+            saveNavalService(navire, "sauvegarde.bin");
+            AfficherSauvegarde("sauvegarde.bin");
             printf("\n\n");
             break;
 
