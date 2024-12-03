@@ -25,6 +25,7 @@ void menu(Port* port, Navire* navire){
         switch(choix){
         case 0 :   // QUITTER
             i = 0;
+
             break;
         case 1 : 
             printf("\n");
@@ -68,11 +69,13 @@ void menu(Port* port, Navire* navire){
             break;
 
         case 6 :
+
             int argc = 0; char **argv = NULL;
             printf("\n");
             printf("--- Dessiner bateau ---\n\n");
-            drawBoat(argc, argv);
             printf("\n\n");
+            GetDrawNB(6);
+            InitGFXMain(argc, argv);
             break;
             
         default:
