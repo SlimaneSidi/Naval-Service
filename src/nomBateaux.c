@@ -41,7 +41,16 @@ const char* nomsBateaux[40] = {
     "Le Vortex",
     "La Lanterne des Mers",
     "Le Cormoran",
-    "La Baleine Bleue"
+    // "Le petit ange",
+    // "Le dealos des mers",
+    // "Le HHC de la fouenta",
+    // "Le bateau de la mort",
+    // "La femme chaude de ta region",
+    // "tripel karmeliet",
+    // "Une bonne biere fraiche a la main gauche et un bon joint a la main droite",
+    // "Un bon vieux whisky a la main gauche et un bon cigare a la main droite",
+    // "Trois bebes dans une poubelle ", 
+    // "La Baleine Bleue"
 };
 
 char* choisirNomAleatoire(const char* nomsBateaux[], int taille) {
