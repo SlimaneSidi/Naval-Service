@@ -6,7 +6,6 @@ int DrawNB;
 
 int InitGFXMain(int argc, char **argv)
 {
-
 	initialiseGfx(argc, argv);
 	prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
 	lanceBoucleEvenements();
@@ -19,20 +18,19 @@ int GetDrawNB(int NB)
 	return DrawNB;
 }
 
-
 void cercle(float centreX, float centreY, float rayon)
 {
-	const int Pas = 20; // Nombre de secteurs pour tracer le cercle
+	const int Pas = 20; 
 	const double PasAngulaire = 2. * M_PI / Pas;
 	int index;
 
-	for (index = 0; index < Pas; ++index) // Pour chaque secteur
+	for (index = 0; index < Pas; ++index) 
 	{
-		const double angle = 2. * M_PI * index / Pas; // on calcule l'angle de depart du secteur
+		const double angle = 2. * M_PI * index / Pas; 
 		triangle(centreX, centreY,
 				 centreX + rayon * cos(angle), centreY + rayon * sin(angle),
 				 centreX + rayon * cos(angle + PasAngulaire), centreY + rayon * sin(angle + PasAngulaire));
-		// On trace le secteur a l'aide d'un triangle => approximation d'un cercle
+		
 	}
 }
 
