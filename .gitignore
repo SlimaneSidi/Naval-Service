@@ -4,6 +4,9 @@ build
 // Fichier exécutable
 exec
 
+// Fichier GFXLib
+lib
+
 // Plutôt clair celui-là
 caca.c
 
