@@ -3,14 +3,13 @@
 #include "../lib/gfxlib/BmpLib.h"
 
 
- int drawBoat(int argc, char **argv) {
+int drawBoat(int argc, char **argv) {
 
 	initialiseGfx(argc, argv);
 	prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
     lanceBoucleEvenements();
 	return 0;
 }
-
 
 void cercle(float centreX, float centreY, float rayon)
 {
