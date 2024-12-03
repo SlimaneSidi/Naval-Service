@@ -32,6 +32,7 @@ typedef struct Navire{
     TypeNavire type;
     char etat[SIZE];            // (en mer, accosté, en attente)
     int CapaciteChargement;     // (en tonnes)
+    char* NomQuai;
     struct Navire* NextNavire;
 }Navire;
 
@@ -59,7 +60,7 @@ Navire* CreerNavire(Navire* navire);
 Navire* CreerNavireAleatoire(Navire* navire);
 void AfficherQuai(Port* port);
 void AfficherNavire(Navire* navire);
-void AjouterFinListeQuai(Quai* quai, Quai* new);
-void AjouterFinListeNavire(Navire* navire, Navire* new);
+void AjouterFinListeNavire(Navire* navire, Navire* new, Port* port);
+void GestionMouillage(Port* port, Navire* navire);
 
 #endif

@@ -56,12 +56,63 @@ Port* initQuai(){
     return port;
 }
 
-void AjouterFinListeNavire(Navire* navire, Navire* new) {
-    if (navire == NULL) {navire = new; return;}
-    Navire* current = navire;
-    while (current->NextNavire != NULL) {current = current->NextNavire;}
-    current->NextNavire = new;
+void AjouterFinListeNavire(Navire* navire, Navire* new, Port* port) {
+    if (navire == NULL) {
+        navire = new;
+    } else {
+        Navire* current = navire;
+        while (current->NextNavire != NULL) {
+            current = current->NextNavire;
+        }
+        current->NextNavire = new;
+    }
     new->NextNavire = NULL;
+    // Allouer le navire au quai correspondant
+    switch (new->type) {
+        case NAVIRE_PASSAGERS:
+            if (port->QuaiPassager == NULL) {
+                port->QuaiPassager = malloc(sizeof(Quai));
+                strcpy(port->QuaiPassager->nom, "Quai de navires passagers");
+                port->QuaiPassager->NumeroQuai = 1;
+                port->QuaiPassager->Profondeur = 10;
+                port->QuaiPassager->Type = NAVIRE_PASSAGERS;
+            }
+            new->NomQuai = port->QuaiPassager->nom;
+            break;
+        case NAVIRE_MARCHANDISES:
+            if (port->QuaiMarchand == NULL) {
+                port->QuaiMarchand = malloc(sizeof(Quai));
+                strcpy(port->QuaiMarchand->nom, "Quai de navires marchands");
+                port->QuaiMarchand->NumeroQuai = 2;
+                port->QuaiMarchand->Profondeur = 15;
+                port->QuaiMarchand->Type = NAVIRE_MARCHANDISES;
+            }
+            new->NomQuai = port->QuaiMarchand->nom;
+            break;
+        case NAVIRE_PETROLIER:
+            if (port->QuaiPetrolier == NULL) {
+                port->QuaiPetrolier = malloc(sizeof(Quai));
+                strcpy(port->QuaiPetrolier->nom, "Quai de pétroliers");
+                port->QuaiPetrolier->NumeroQuai = 3;
+                port->QuaiPetrolier->Profondeur = 20;
+                port->QuaiPetrolier->Type = NAVIRE_PETROLIER;
+            }
+            new->NomQuai = port->QuaiPetrolier->nom;
+            break;
+        case NAVIRE_YACHT:
+            if (port->QuaiYacht == NULL) {
+                port->QuaiYacht = malloc(sizeof(Quai));
+                strcpy(port->QuaiYacht->nom, "Quai de yachts");
+                port->QuaiYacht->NumeroQuai = 4;
+                port->QuaiYacht->Profondeur = 5;
+                port->QuaiYacht->Type = NAVIRE_YACHT;
+            }
+            new->NomQuai = port->QuaiYacht->nom;
+            break;
+        default:
+            printf("Type de navire inconnu\n");
+            break;
+    }
 }
 
 Navire* CreerNavire(Navire* navire) {
@@ -119,15 +170,10 @@ Navire* CreerNavireAleatoire(Navire* navire){
     const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
     navire1->nom = malloc(strlen(nomAleatoire) + 1);
     strcpy(navire1->nom, nomAleatoire);
-    printf("Nom du navire : %s\n\n",navire1->nom);
     navire1->id = id_counter++;
-    printf("Identifiant du navire : %d\n\n",navire1->id);
     navire1->type = rand() % 4 + 1;
-    printf("Type de navire : %s\n\n",TypeNavireToString(navire1->type));
     strcpy(navire1->etat, "en mer");
-    printf("Etat du navire : %s\n\n",navire1->etat);
     navire1->CapaciteChargement = rand() % 1000 + 1;
-    printf("Capacité de chargement du navire : %d\n\n",navire1->CapaciteChargement);
 
     return navire1;
 }
@@ -180,6 +226,7 @@ void AfficherNavire(Navire* navire){
         printf("Type de navire : %s\n",TypeNavireToString(navire1->type));
         printf("Etat du navire : %s\n",navire1->etat);
         printf("Capacité de chargement du navire : %d\n",navire1->CapaciteChargement);
+        printf("Assigné au quai : %s\n", navire1->NomQuai);
         printf("\n");
         navire1 = navire1->NextNavire;
     }
