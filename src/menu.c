@@ -49,7 +49,7 @@ void menu(Port* port, Navire* navire){
         case 4 :
             printf("\n");
             printf("--- Afficher la sauvegarde ---\n\n");
-            saveNavalService(Quai, navire, "FichierSaveBougnoul");
+            saveNavalService(navire, "sauvegarde.bin");
             AfficherSauvegarde("sauvegarde.bin");
             printf("\n\n");
             break;

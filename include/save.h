@@ -3,9 +3,9 @@
 
 #include "moteur.h"
 
-void fichier(void);
-int saveNavalService(Quai* quai,Navire* navire, char NavalService);
-void AfficherSauvegarde(const char *NavalService, const char *quai,const char *navire);
-
+void saveNavalService(Navire* navire, const char *nomFichier);
+void AfficherSauvegarde(const char *NavalService);
+int CreationFichier();
+//, const char *quai, const char *navire
 #endif
 

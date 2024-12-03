@@ -1,3 +1,11 @@
+// Fichier build (créés durant le make)
 build
+
+// Fichier exécutable
 exec
+
+// Plutôt clair celui-là
 caca.c
+
+// Fichier de sauvegarde
+sauvegarde.bin
