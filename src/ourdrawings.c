@@ -61,15 +61,16 @@ void Draw2(){
     /////////////////////////////////////
 }
 
-void Draw3(){
-	        // Clear the window with a blue background
+
+void Draw3() {
+    // Clear the window with a blue background
     effaceFenetre(0, 0, 255);
 
     // Set the color to gray for the docks
     couleurCourante(169, 169, 169);
 
     // Draw the four docks at the top
-   int dockWidth = 100;
+    int dockWidth = 100;
     int dockHeight = 200;
     int totalDockWidth = 4 * dockWidth;
     int availableWidth = largeurFenetre() - totalDockWidth;
@@ -78,16 +79,46 @@ void Draw3(){
     int startY = 0;
 
     for (int i = 0; i < 4; ++i) {
-        rectangle(startX + i * (dockWidth + spacing), startY, startX + i * (dockWidth + spacing) + dockWidth, startY + dockHeight);
+        int dockX = startX + i * (dockWidth + spacing);
+        int dockY = startY;
+        rectangle(dockX, dockY, dockX + dockWidth, dockY + dockHeight);
+
+        // Draw four small squares with numbers inside each dock in a vertical line
+        int squareSize = 20;
+        int squareSpacing = 20; //espacement des carrés du bas
+        for (int j = 0; j < 4; ++j) {
+            int squareX = dockX + squareSpacing;
+            int squareY = dockY + squareSpacing + j * (squareSize + squareSpacing);
+            rectangle(squareX, squareY, squareX + squareSize, squareY + squareSize);
+            char number[2];
+            sprintf(number, "%d", j + 1);
+            couleurCourante(0, 0, 0); // Set color to black for text
+            afficheChaine(number, 12, squareX + 5, squareY + 5);
+            couleurCourante(169, 169, 169); // Reset color to gray for next square
+        }
     }
 
     // Draw the waiting dock at the bottom
-   int waitingDockWidth = 500; // lenght
+    int waitingDockWidth = 500; // length
     int waitingDockHeight = 80; // Fixed height
     int waitingDockX = largeurFenetre() - waitingDockWidth - 0; // Position it to the right side
     int waitingDockY = hauteurFenetre() - waitingDockHeight - 50;
 
     rectangle(waitingDockX, waitingDockY, waitingDockX + waitingDockWidth, waitingDockY + waitingDockHeight);
+
+    // Draw four small squares with numbers inside the waiting dock in a line
+    int squareSize = 20;
+    int squareSpacing = 50;
+    for (int j = 0; j < 4; ++j) {
+        int squareX = waitingDockX + squareSpacing + j * (squareSize + squareSpacing);
+        int squareY = waitingDockY + squareSpacing;
+        rectangle(squareX, squareY, squareX + squareSize, squareY + squareSize);
+        char number[2];
+        sprintf(number, "%d", j + 1);
+        couleurCourante(0, 0, 0); // Set color to black for text
+        afficheChaine(number, 12, squareX + 5, squareY + 5);
+        couleurCourante(169, 169, 169); // Reset color to gray for next square
+    }
 
     // Refresh the window to display the drawing
     rafraichisFenetre();
