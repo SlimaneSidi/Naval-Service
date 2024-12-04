@@ -166,10 +166,10 @@ Navire* CreerNavire(Navire* navire) {
 Navire* CreerNavireAleatoire(Navire* navire){
     static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
-
     const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
     navire1->nom = malloc(strlen(nomAleatoire) + 1);
     strcpy(navire1->nom, nomAleatoire);
+    printf("Nom du navire : %s\n\n",navire1->nom);
     navire1->id = id_counter++;
     navire1->type = rand() % 4 + 1;
     strcpy(navire1->etat, "en mer");

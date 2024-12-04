@@ -21,6 +21,7 @@ void menu(Port* port, Navire* navire){
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
+        int choixSave = 0;
         scanf("%d",&choix);
 
         switch(choix){
@@ -30,19 +31,30 @@ void menu(Port* port, Navire* navire){
         case 1 :   // LANCER
             printf("\n");
             printf("--- Lancement du logiciel naval service ---\n\n");
-            Navire* newNavireAleatoire1 = CreerNavireAleatoire(NULL);
-            AjouterFinListeNavire(navire, newNavireAleatoire1, port);
-            if (navire == NULL) {
-                navire = newNavireAleatoire1;
-            }
-            Navire* newNavireAleatoire2 = CreerNavireAleatoire(NULL);
-            AjouterFinListeNavire(navire, newNavireAleatoire2, port);
-            if (navire == NULL) {
-                navire = newNavireAleatoire2;
-            }
-            AfficherNavire(navire);
+            printf("1 - Lancer le programme sans sauvegarde\n");
+            printf("2 - Chercher une sauvegarde\n");
+            scanf("%d",&choixSave);
+            switch(choixSave){
+                case 1:
+                    Navire* newNavireAleatoire1 = CreerNavireAleatoire(NULL);
+                    AjouterFinListeNavire(navire, newNavireAleatoire1, port);
+                    if (navire == NULL) {
+                        navire = newNavireAleatoire1;
+                    }
+                    Navire* newNavireAleatoire2 = CreerNavireAleatoire(NULL);
+                    AjouterFinListeNavire(navire, newNavireAleatoire2, port);
+                    if (navire == NULL) {
+                        navire = newNavireAleatoire2;
+                    }
+                    AfficherNavire(navire);
+                    break;
+                case 2:
+                    ChargerNavalService("sauvegarde.bin");
+                    AfficherSauvegarde("sauvegarde.bin");
+                    break;
             printf("\n\n");
             break;
+            }
         case 2 : 
             printf("\n");
             printf("--- Créer un navire manuellement ---\n\n");
@@ -78,12 +90,11 @@ void menu(Port* port, Navire* navire){
             break;
         case 6 :
             printf("\n");
-            printf("--- Afficher la sauvegarde ---\n\n");
+            printf("--- Sauvegarde effectuée ---\n\n");
             saveNavalService(navire, "sauvegarde.bin");
             AfficherSauvegarde("sauvegarde.bin");
-            printf("\n\n");
+            printf("\n");
             break;
-
         case 7 :
             int argc = 0; char **argv = NULL;
             printf("\n");
