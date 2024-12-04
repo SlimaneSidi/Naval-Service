@@ -89,8 +89,9 @@ void Draw3() {
         int squareSpacing = 15;//espacement des quais du bas
         int numSquares = 4 - i; // Decrease the number of squares for each dock
         for (int j = 0; j < numSquares; ++j) {
-            int squareX = dockX + squareSpacing;
+             int squareX = dockX + squareSpacing;
             int squareY = dockY + squareSpacing + j * (squareSize + squareSpacing);
+            couleurCourante(13, 196, 0); // Set color to red for squares
             rectangle(squareX, squareY, squareX + squareSize, squareY + squareSize);
             char number[2];
             sprintf(number, "%d", j + 1);
@@ -114,6 +115,7 @@ void Draw3() {
     for (int j = 0; j < 4; ++j) {
         int squareX = waitingDockX + squareSpacing + j * (squareSize + squareSpacing);
         int squareY = waitingDockY + squareSpacing;
+        couleurCourante(255, 0, 0); // Set color to red for squares
         rectangle(squareX, squareY, squareX + squareSize, squareY + squareSize);
         char number[2];
         sprintf(number, "%d", j + 1);
