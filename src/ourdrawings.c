@@ -62,6 +62,7 @@ void Draw2(){
 }
 
 
+
 void Draw3() {
     // Clear the window with a blue background
     effaceFenetre(0, 0, 255);
@@ -83,10 +84,11 @@ void Draw3() {
         int dockY = startY;
         rectangle(dockX, dockY, dockX + dockWidth, dockY + dockHeight);
 
-        // Draw four small squares with numbers inside each dock in a vertical line
+        // Draw small squares with numbers inside each dock in a vertical line
         int squareSize = 20;
-        int squareSpacing = 20; //espacement des carrés du bas
-        for (int j = 0; j < 4; ++j) {
+        int squareSpacing = 15;//espacement des quais du bas
+        int numSquares = 4 - i; // Decrease the number of squares for each dock
+        for (int j = 0; j < numSquares; ++j) {
             int squareX = dockX + squareSpacing;
             int squareY = dockY + squareSpacing + j * (squareSize + squareSpacing);
             rectangle(squareX, squareY, squareX + squareSize, squareY + squareSize);
@@ -108,7 +110,7 @@ void Draw3() {
 
     // Draw four small squares with numbers inside the waiting dock in a line
     int squareSize = 20;
-    int squareSpacing = 50;
+    int squareSpacing = 50; //+haut ou +bas
     for (int j = 0; j < 4; ++j) {
         int squareX = waitingDockX + squareSpacing + j * (squareSize + squareSpacing);
         int squareY = waitingDockY + squareSpacing;
@@ -123,4 +125,3 @@ void Draw3() {
     // Refresh the window to display the drawing
     rafraichisFenetre();
 }
-
