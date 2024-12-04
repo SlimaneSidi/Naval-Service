@@ -10,6 +10,7 @@
 
 void Draw1();
 void Draw2();
+void Draw3();
 
 #endif
 

@@ -19,6 +19,7 @@ void menu(Port* port, Navire* navire){
         printf("5 - Sauvegarder les quais et les navires\n");
         printf("6 - dessiner bateau\n");
         printf("7 - dessiner bateau2\n");
+        printf("8 - dessiner map\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -87,6 +88,16 @@ void menu(Port* port, Navire* navire){
             GetDrawNB(7);
             InitGFXMain(argc, argv);
             break;
+
+        case 8 :
+
+            printf("\n");
+            printf("--- Dessiner Map  ---\n\n");
+            printf("\n\n");
+            GetDrawNB(8);
+            InitGFXMain(argc, argv);
+            break;
+            
             
         default:
         printf("error");

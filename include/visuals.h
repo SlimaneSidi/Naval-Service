@@ -18,6 +18,7 @@ void gestionEvenement(EvenementGfx evenement);
 int GetDrawNB(int NB);
 void Draw1();
 void Draw2();
+void Draw3();
 
 
 

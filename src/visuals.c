@@ -44,7 +44,7 @@ void gestionEvenement(EvenementGfx evenement)
 	{
 	case Initialisation:
 
-		image = lisBMPRGB("data/img/ISEN.bmp");
+		image = lisBMPRGB("data/img/sky2.bmp");
 		demandeTemporisation(20);
 		break;
 
@@ -63,6 +63,10 @@ void gestionEvenement(EvenementGfx evenement)
 		
 		case 7:
 			Draw2();
+			break;
+
+		case 8:
+			Draw3();
 			break;
 		}
 
