@@ -127,3 +127,6 @@ void Draw3() {
     // Refresh the window to display the drawing
     rafraichisFenetre();
 }
+
+
+//Random test
