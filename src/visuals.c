@@ -1,6 +1,7 @@
 #include "../lib/gfxlib/GfxLib.h"
 #include "../include/visuals.h"
 #include "../lib/gfxlib/BmpLib.h"
+#include "../include/ourdrawings.h"
 
 int DrawNB;
 
@@ -66,7 +67,11 @@ void gestionEvenement(EvenementGfx evenement)
 			break;
 
 		case 8:
-			Draw3();
+			
+             initializeSquares();
+             changeSquareColor(3, 0, 0, 255, 0);
+			 changeSquareColor(4, 1, 0, 255, 0);
+			 Draw3();
 			break;
 		}
 
