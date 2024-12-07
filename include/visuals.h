@@ -11,6 +11,13 @@
 #define LargeurFenetre 800
 #define HauteurFenetre 600
 
+typedef struct {
+    int x, y;
+    int width, height;
+    char label[20];
+} Button;
+Button myButton;
+
 extern int DrawNB; // Variable globale pour savoir quel dessin effectuer
 
 int InitGFXMain(int argc, char **argv);
@@ -22,6 +29,10 @@ void Draw2();
 void Draw3();
 void initializeSquares();
 void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
+void initializeButton();
+void drawButton(Button button);
+int isButtonClicked(Button button, int mouseX, int mouseY);
+
 
 //random
 
