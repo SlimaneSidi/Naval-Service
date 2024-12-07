@@ -116,6 +116,19 @@ void gestionEvenement(EvenementGfx evenement)
 			// Configure le systeme pour ne plus generer de message Temporisation
 			demandeTemporisation(-1);
 			break;
+        case 'W':
+		case 'w':
+			changeSquareColor(0, 0, 0, 255, 0);
+			demandeTemporisation(20);
+			rafraichisFenetre();
+			break;
+        case 'X':
+		case 'x':
+			// Configure le systeme pour ne plus generer de message Temporisation
+			break;
+        case 'C':
+		case 'c':
+			break;
 		}
 		break;
 
@@ -128,6 +141,8 @@ void gestionEvenement(EvenementGfx evenement)
 		{
 		case GaucheAppuye:
 			printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
+			changeSquareColor(1, 1, 200, 255, 0);
+			rafraichisFenetre();
 			// Si le bouton gauche de la souris est appuye, faire repartir
 			// la balle de la souris
 
