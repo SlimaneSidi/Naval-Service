@@ -4,13 +4,11 @@
 void saveNavalService(Navire* navire, const char* filename) {
     if (navire == NULL) {
         printf("Il n'y a aucun navires à sauvegarder.\n");
-        return;
-    }
+        return;}
     FILE* fichier = fopen(filename, "wb");
     if (fichier == NULL) {
         printf("Erreur lors de l'ouverture du fichier.\n");
-        return;
-    }
+        return;}
     fprintf(fichier, "Navire ID: %d\n", navire->id);
     fprintf(fichier, "Navire Nom: %s\n", navire->nom);
     fprintf(fichier, "Navire Type: %d\n", navire->type);
@@ -29,16 +27,6 @@ void saveNavalService(Navire* navire, const char* filename) {
         fprintf(fichier, "Navire Next: NULL\n");}
     fclose(fichier);
 }
-
-// void AfficherSauvegarde(const char *NavalService) {
-//     FILE *fichier = fopen(NavalService, "rb");
-//     if (fichier == NULL) {
-//         printf("Erreur lors de l'ouverture du fichier");
-//         return;
-//     }
-//     fprintf("Contenu du fichier %s:\n", NavalService);
-//     fclose(fichier);
-// }
 
 void AfficherSauvegarde(const char *NavalService) {
     FILE *fichier = fopen(NavalService, "rb");

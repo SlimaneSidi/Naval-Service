@@ -50,11 +50,15 @@ void menu(Port* port, Navire* navire){
                     break;
                 case 2:
                     ChargerNavalService("sauvegarde.bin");
-                    AfficherSauvegarde("sauvegarde.bin");
+                    //AfficherSauvegarde("sauvegarde.bin");
+                    break;
+                default:
+                    printf("Choix invalide\n");
                     break;
             printf("\n\n");
-            break;
             }
+            break;
+            
         case 2 : 
             printf("\n");
             printf("--- Créer un navire manuellement ---\n\n");
