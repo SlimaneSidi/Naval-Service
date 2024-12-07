@@ -5,7 +5,7 @@
 #include "../lib/gfxlib/GfxLib.h" // Seul cet include est necessaire pour faire du graphique
 #include "../lib/gfxlib/BmpLib.h" // Cet include permet de manipuler des fichiers BMP
 #include "../lib/gfxlib/ESLib.h" // Pour utiliser valeurAleatoire()
-#include "../include/ourdrawings.h"
+//#include "../include/ourdrawings.h"
 
 // Largeur et hauteur par defaut d'une image correspondant a nos criteres
 #define LargeurFenetre 800
@@ -16,7 +16,6 @@ typedef struct {
     int width, height;
     char label[20];
 } Button;
-Button myButton;
 
 extern int DrawNB; // Variable globale pour savoir quel dessin effectuer
 
@@ -30,12 +29,7 @@ void Draw3();
 void initializeSquares();
 void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
 void initializeButton();
-void drawButton(Button button);
-int isButtonClicked(Button button, int mouseX, int mouseY);
-
-
-//random
-
-
+void drawButton(Button* button);
+int isButtonClicked(Button* button, int mouseX, int mouseY);
 
 #endif

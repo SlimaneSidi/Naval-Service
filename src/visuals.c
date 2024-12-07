@@ -1,10 +1,5 @@
-#include "../lib/gfxlib/GfxLib.h"
 #include "../include/visuals.h"
-#include "../lib/gfxlib/BmpLib.h"
-#include "../include/ourdrawings.h"
-extern Button myButton;
-
-int DrawNB;
+//extern Button myButton;
 
 int InitGFXMain(int argc, char **argv)
 {
@@ -47,7 +42,7 @@ void gestionEvenement(EvenementGfx evenement)
 	case Initialisation:
 
 		image = lisBMPRGB("data/img/sky2.bmp");
-		initializeButton();
+		//initializeButton();
 		demandeTemporisation(20);
 		break;
 
@@ -145,10 +140,10 @@ void gestionEvenement(EvenementGfx evenement)
 			printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
 			changeSquareColor(1, 1, 200, 255, 0);
 			 if (etatBoutonSouris() == GaucheAppuye) {
-				//Button myButton;
+				Button* bouton = initializeButton();
                 int mouseX = abscisseSouris();
                 int mouseY = ordonneeSouris();
-                if (isButtonClicked(Button myButton, mouseX, mouseY)) {
+                if (isButtonClicked(bouton, mouseX, mouseY) == 1) {
                     printf("Button clicked!\n");
 				}
 			 }

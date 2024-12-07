@@ -1,56 +1,31 @@
 #include "../include/ourdrawings.h"
-#include "../include/visuals.h"
 
-
-
-#include "../lib/gfxlib/GfxLib.h"
-#include "../include/visuals.h"
-#include <stdio.h>
-
-
-
-typedef struct {
-    int x, y;
-    int size;
-    int r, g, b; // Color components
-    char number[2];
-} Square;
-
-typedef struct {
-    int x, y;
-    int width, height;
-    char label[20];
-} Button;
-Button myButton;
-
-void initializeButton() {
-    //Button myButton;
+Button initializeButton() {
+    Button myButton;
     myButton.x = 50;
     myButton.y = 50;
     myButton.width = 100;
     myButton.height = 50;
     sprintf(myButton.label, "Click Me");
+    return myButton;
 }
 
-
-void drawButton(Button button) {
+void drawButton() {
+    Button* button = initializeButton();
     couleurCourante(200, 200, 200); // Set color to light gray for button background
     rectangle(button.x, button.y, button.x + button.width, button.y + button.height);
     couleurCourante(0, 0, 0); // Set color to black for text
     afficheChaine(button.label, 12, button.x + 10, button.y + 20);
 }
 
-int isButtonClicked(Button button, int mouseX, int mouseY) {
+int isButtonClicked(Button* button, int mouseX, int mouseY) {
     return mouseX >= button.x && mouseX <= button.x + button.width &&
            mouseY >= button.y && mouseY <= button.y + button.height;
 }
 
-Square docks[4][4]; // Array to store squares for each dock
-Square waitingDock[4]; // Array to store squares for the waiting dock
-
 void initializeSquares() {
     int dockWidth = 100;
-   // int dockHeight = 200;
+    // int dockHeight = 200;
     int totalDockWidth = 4 * dockWidth;
     int availableWidth = largeurFenetre() - totalDockWidth;
     int spacing = availableWidth / 5; // 5 spaces: 1 on each side and 3 between docks
