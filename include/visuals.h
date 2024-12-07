@@ -23,7 +23,7 @@ void Draw3();
 void initializeSquares();
 void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
 
-
+//random
 
 
 
