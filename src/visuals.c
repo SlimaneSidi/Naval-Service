@@ -66,6 +66,7 @@ void gestionEvenement(EvenementGfx evenement)
     static Button* bouton4 = NULL;
     static Button* bouton5 = NULL;
     static Port* port = NULL; // Define a Port object
+	static Navire* navire = NULL;
 
     switch (evenement)
     {
@@ -77,6 +78,7 @@ void gestionEvenement(EvenementGfx evenement)
         bouton4 = initializeButton(25, 440, "Button 4");
         bouton5 = initializeButton(25, 380, "Button 5");
         port = initQuai(); // Initialize the Port object
+		navire = CreerNavireAleatoire(navire);
         demandeTemporisation(20);
         break;
 
@@ -191,7 +193,9 @@ void gestionEvenement(EvenementGfx evenement)
                         AfficherQuai(port); // Correct function call
                     }
                     if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
-                        printf("Button 4 clicked\n");
+                        printf("\n\n");
+						system("clear");
+						AfficherNavire(navire);
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
                         printf("Button 5 clicked\n");
