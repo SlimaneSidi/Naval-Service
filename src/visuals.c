@@ -157,14 +157,29 @@ void gestionEvenement(EvenementGfx evenement){
             if (etatBoutonSouris() == GaucheAppuye) {
                 int mouseX = abscisseSouris();
                 int mouseY = ordonneeSouris();
-                if (DrawNB == 7) { // Only check buttons in Draw1
+                if (DrawNB == 6) { // Only check buttons in Draw1
                     if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
                         printf("Button jouer\n");
-                        KillWindowToDraw();}
+                    }
                     if (isButtonClicked(bouton2, mouseX, mouseY) == 1) {
                         printf("Button quitter\n");
-						libereDonneesImageRGB(&image); 
-                        termineBoucleEvenements();}
+                        libereDonneesImageRGB(&image); 
+                        termineBoucleEvenements();
+                    }
+                }
+                if (DrawNB == 8) { // Only check buttons in Draw3
+                    if (isButtonClicked(bouton3, mouseX, mouseY) == 1) {
+                        printf("\n\n");
+                        AfficherQuai(port); // Correct function call
+                    }
+                    if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
+                        printf("\n\n");
+						system("clear");
+						//AfficherNavire(navire);
+                    }
+                    if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
+                        printf("Button 5 clicked\n");
+                    }
                 }
             }
             rafraichisFenetre();
