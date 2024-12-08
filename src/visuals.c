@@ -67,8 +67,8 @@ void gestionEvenement(EvenementGfx evenement)
     {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
-        bouton1 = initializeButton(50, 100, "Jouer");
-        bouton2 = initializeButton(650, 100, "Quitter");
+        bouton1 = initializeButton(50, 100, "Jouer"); //Changer les valeurs dans ourdrawings.c 
+        bouton2 = initializeButton(650, 100, "Quitter"); // et ici en même temps
         demandeTemporisation(20);
         break;
 
@@ -91,8 +91,6 @@ void gestionEvenement(EvenementGfx evenement)
             Draw3();
             break;
         }
-        drawButton(bouton1);
-        drawButton(bouton2);
         break;
 
     case Clavier:
@@ -166,13 +164,15 @@ void gestionEvenement(EvenementGfx evenement)
             if (etatBoutonSouris() == GaucheAppuye) {
                 int mouseX = abscisseSouris();
                 int mouseY = ordonneeSouris();
-                if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
-                    printf("Button jouer!\n");
-                }
-                if (isButtonClicked(bouton2, mouseX, mouseY) == 1) {
-                    printf("button quitter\n");
-					libereDonneesImageRGB(&image); 
-                    termineBoucleEvenements();
+                if (DrawNB == 6) { // Only check buttons in Draw1
+                    if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
+                        printf("Button jouer\n");
+                    }
+                    if (isButtonClicked(bouton2, mouseX, mouseY) == 1) {
+                        printf("Button quitter\n");
+						libereDonneesImageRGB(&image); 
+                        termineBoucleEvenements();
+                    }
                 }
             }
             rafraichisFenetre();
