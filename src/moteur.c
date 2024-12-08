@@ -285,78 +285,64 @@ void DistribuerNavires(Navire* navire, Port* port) {
         if (port->QuaiPassager->NbNaviresAccostes < 4) {
             port->QuaiPassager->NbNaviresAccostes++;
             strcpy(navire->etat, "accosté");
-            printf("Navire de passagers ajouté au quai des passagers\n");
-        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            printf("Navire de passagers ajouté au quai des passagers\n");} 
+        else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
             port->QuaiMouillage->NbNaviresAccostes++;
             strcpy(navire->etat, "mouillage");
-            printf("Navire de passagers ajouté au quai de mouillage\n");
-        } else {
+            printf("Navire de passagers ajouté au quai de mouillage\n");}
+        else {
             SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
-            printf("Navire de passagers supprimé\n");
-        }
-    } else if (navire->type == NAVIRE_MARCHANDISES) {
+            printf("Navire de passagers supprimé\n");}}
+    else if (navire->type == NAVIRE_MARCHANDISES) {
         if (port->QuaiMarchand->NbNaviresAccostes < 3) {
             port->QuaiMarchand->NbNaviresAccostes++;
             strcpy(navire->etat, "accosté");
-            printf("Navire de marchandises ajouté au quai des marchandises\n");
-        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            printf("Navire de marchandises ajouté au quai des marchandises\n");}
+        else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
             port->QuaiMouillage->NbNaviresAccostes++;
             strcpy(navire->etat, "mouillage");
-            printf("Navire de marchandises ajouté au quai de mouillage\n");
-        } else {
+            printf("Navire de marchandises ajouté au quai de mouillage\n");}
+        else {
             SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
-            printf("Navire de marchandises supprimé\n");
-        }
+            printf("Navire de marchandises supprimé\n");}
     } else if (navire->type == NAVIRE_PETROLIER) {
         if (port->QuaiPetrolier->NbNaviresAccostes < 1) {
             port->QuaiPetrolier->NbNaviresAccostes++;
             strcpy(navire->etat, "accosté");
-            printf("Pétrolier ajouté au quai des pétroliers\n");
-        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            printf("Pétrolier ajouté au quai des pétroliers\n");}
+        else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
             port->QuaiMouillage->NbNaviresAccostes++;
             strcpy(navire->etat, "mouillage");
-            printf("Pétrolier ajouté au quai de mouillage\n");
-        } else {
+            printf("Pétrolier ajouté au quai de mouillage\n");}
+        else {
             SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
-            printf("Pétrolier supprimé\n");
-        }
-    } else if (navire->type == NAVIRE_YACHT) {
+            printf("Pétrolier supprimé\n");}}
+    else if (navire->type == NAVIRE_YACHT) {
         if (port->QuaiYacht->NbNaviresAccostes < 4) {
             port->QuaiYacht->NbNaviresAccostes++;
             strcpy(navire->etat, "accosté");
-            printf("Yacht ajouté au quai des yachts\n");
-        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            printf("Yacht ajouté au quai des yachts\n");}
+        else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
             port->QuaiMouillage->NbNaviresAccostes++;
             strcpy(navire->etat, "mouillage");
-            printf("Yacht ajouté au quai de mouillage\n");
-        } else {
+            printf("Yacht ajouté au quai de mouillage\n");}
+        else {
             SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
-            printf("Yacht supprimé\n");
-        }
+            printf("Yacht supprimé\n");}
     }
 }
 
 void SupprimerNavireDuMouillage(Navire** head, Navire* navire) {
     Navire* temp = *head;
     Navire* prev = NULL;
-
-    // Si le navire à supprimer est le premier de la liste
     if (temp != NULL && temp == navire) {
         *head = temp->NextNavire;
         free(temp);
-        return;
-    }
-
-    // Recherchez le navire à supprimer
+        return;}
     while (temp != NULL && temp != navire) {
         prev = temp;
-        temp = temp->NextNavire;
-    }
-
-    // Si le navire n'est pas trouvé
+        temp = temp->NextNavire;}
     if (temp == NULL) return;
-
-    // Détachez le navire de la liste
     prev->NextNavire = temp->NextNavire;
     free(temp);
 }
