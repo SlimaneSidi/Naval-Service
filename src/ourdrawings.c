@@ -5,28 +5,6 @@
 Square docks[4][4];
 Square waitingDock[4];
 
-Button* initializeButton() {
-    Button* myButton = (Button*)malloc(sizeof(Button));
-    myButton->x = 50;
-    myButton->y = 50;
-    myButton->width = 100;
-    myButton->height = 50;
-    sprintf(myButton->label, "Click Me");
-    return myButton;
-}
-
-void drawButton(Button* button) {
-    couleurCourante(200, 200, 200); // Set color to light gray for button background
-    rectangle(button->x, button->y, button->x + button->width, button->y + button->height);
-    couleurCourante(0, 0, 0); // Set color to black for text
-    afficheChaine(button->label, 12, button->x + 10, button->y + 20);
-}
-
-int isButtonClicked(Button* button, int mouseX, int mouseY) {
-    return mouseX >= button->x && mouseX <= button->x + button->width &&
-           mouseY >= button->y && mouseY <= button->y + button->height;
-}
-
 void initializeSquares() {
     int dockWidth = 100;
     int totalDockWidth = 4 * dockWidth;
@@ -177,9 +155,13 @@ void Draw1() {
     // Draw the sail of the boat
     triangle(400, 200, 400, 400, 500, 200);
 
-    // Draw the button
-    Button* myButton = initializeButton();
-    drawButton(myButton);
+    // Draw the first button
+    Button* myButton1 = initializeButton(50, 50, "Click Me");
+    drawButton(myButton1);
+
+    // Draw the second button to the right of the first button
+    Button* myButton2 = initializeButton(200, 50, "Button 2");
+    drawButton(myButton2);
 
     rafraichisFenetre();
 }

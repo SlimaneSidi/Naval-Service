@@ -36,8 +36,8 @@ void Draw2();
 void Draw3();
 void initializeSquares();
 void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
-Button* initializeButton();
-void drawButton(Button* button);
-int isButtonClicked(Button* button, int mouseX, int mouseY);
+extern Button* initializeButton(int x, int y, const char* label);
+extern void drawButton(Button* button);
+extern int isButtonClicked(Button* button, int mouseX, int mouseY);
 
 #endif // VISUALS_H
