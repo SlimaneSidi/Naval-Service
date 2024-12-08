@@ -17,7 +17,6 @@ void menu(Port* port, Navire* navire){
         printf("4 - Afficher les quais\n");
         printf("5 - Afficher les navires\n");
         printf("6 - Sauvegarder les quais et les navires\n");
-        printf("7 - dessiner bateau\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -36,17 +35,19 @@ void menu(Port* port, Navire* navire){
             scanf("%d",&choixSave);
             switch(choixSave){
                 case 1:
-                    Navire* newNavireAleatoire1 = CreerNavireAleatoire(NULL);
-                    AjouterFinListeNavire(navire, newNavireAleatoire1, port);
-                    if (navire == NULL) {
-                        navire = newNavireAleatoire1;
+                    int GAME = 1;
+                    int JOUER = 0;
+                    int AJOUTERBATEAU = 0;
+                    while (GAME == 1){
+                        // APPEL DU MENU GFX
+                    
+                        // mettre le bouton ici
+                        printf("Nouveau navire arrivant :\n");
+                        if (AJOUTERBATEAU == 1) {
+                            genererBateaux(port, navire, AJOUTERBATEAU);}
+                        
+
                     }
-                    Navire* newNavireAleatoire2 = CreerNavireAleatoire(NULL);
-                    AjouterFinListeNavire(navire, newNavireAleatoire2, port);
-                    if (navire == NULL) {
-                        navire = newNavireAleatoire2;
-                    }
-                    AfficherNavire(navire);
                     break;
                 case 2:
                     ChargerNavalService("sauvegarde.bin");
