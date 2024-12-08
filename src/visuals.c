@@ -71,8 +71,12 @@ void gestionEvenement(EvenementGfx evenement){
     switch (evenement){
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
-        bouton1 = initializeButton(50, 100, "Jouer"); //Changer les valeurs dans ourdrawings.c 
-        bouton2 = initializeButton(650, 100, "Quitter"); // et ici en même temps
+        bouton1 = initializeButton(50, 50, "Jouer");
+        bouton2 = initializeButton(200, 50, "Quitter");
+        bouton3 = initializeButton(25, 500, "Afficher quai");
+        bouton4 = initializeButton(25, 440, "Button 4");
+        bouton5 = initializeButton(25, 380, "Button 5");
+        port = initQuai(); // Initialize the Port object
         demandeTemporisation(20);
         break;
     case Temporisation:
