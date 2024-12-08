@@ -146,35 +146,73 @@ void Draw2() {
     rafraichisFenetre();
 }
 
+
+
 void Draw1() {
    static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
-	
-	image = lisBMPRGB("data/img/sky2.bmp");
-	demandeTemporisation(20);
 
-	if (image != NULL) // Si l'image a pu etre lue
-		{
-			// On affiche l'image
-			ecrisImage((largeurFenetre() - image->largeurImage) / 2, (hauteurFenetre() - image->hauteurImage) / 2, image->largeurImage, image->hauteurImage, image->donneesRGB);
-		}
+   image = lisBMPRGB("data/img/sky2.bmp");
+   demandeTemporisation(20);
 
-	////////////////////////BATEAU///////
+   if (image != NULL) // Si l'image a pu etre lue
+       {
+           // On affiche l'image
+           ecrisImage((largeurFenetre() - image->largeurImage) / 2, (hauteurFenetre() - image->hauteurImage) / 2, image->largeurImage, image->hauteurImage, image->donneesRGB);
+       }
 
-	couleurCourante(0, 0, 255);
+   ////////////////////////BATEAU///////
 
-	// Draw the hull of the boat
-	triangle(200, 200, 600, 200, 300, 100);
-	triangle(600, 200, 500, 100, 300, 100);
+   couleurCourante(0, 0, 255);
 
-	// Set the color to white for the sail
-	couleurCourante(255, 255, 255);
+   // Draw the hull of the boat
+   triangle(200, 200, 600, 200, 300, 100);
+   triangle(600, 200, 500, 100, 300, 100);
 
-	// Draw the sail of the boat
-	triangle(400, 200, 400, 400, 500, 200);
+   // Set the color to white for the sail
+   couleurCourante(255, 255, 255);
 
-	rafraichisFenetre();
+   // Draw the sail of the boat
+   triangle(400, 200, 400, 400, 500, 200);
 
-	/////////////////////////////////////
+   // Dessiner les boutons "Jouer" et "Quitter"
+   couleurCourante(0, 255, 0);
+   rectangle(100, 50, 300, 100); // Bouton "Jouer"
+   couleurCourante(0, 0, 0);
+   afficheChaine("Jouer", 18, 150, 65);
 
+   couleurCourante(255, 0, 0);
+   rectangle(500, 50, 700, 100); // Bouton "Quitter"
+   couleurCourante(0, 0, 0);
+   afficheChaine("Quitter", 18, 550, 65);
+
+   rafraichisFenetre();
+
+   /////////////////////////////////////
 }
+
+char gereClicButton(char* button[])
+{   int x = abscisseSouris();
+    int y = ordonneeSouris();
+
+    if(x>=100 && x<= largeurFenetre()/8 && y>=50 && y<= hauteurFenetre()/8){
+    for(int i=0; i< 100; i++)
+    { if(*button[i] == "Jouer"){
+        *button[i] = menu ;
+        }
+    } 
+    }
+     if(x>=500 && x<= largeurFenetre()/8 && y>=50 && y<= hauteurFenetre()/8){
+    for(int i=0; i< 500; i++)
+    { if(*button[i] == "Quitter"){
+        *button[i] = ' ' ;
+        }
+    } 
+    }
+return button;
+}
+
+
+  
+
+
 
