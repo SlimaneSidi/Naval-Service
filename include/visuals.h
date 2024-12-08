@@ -40,5 +40,6 @@ void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
 extern Button* initializeButton(int x, int y, const char* label);
 extern void drawButton(Button* button);
 extern int isButtonClicked(Button* button, int mouseX, int mouseY);
+void KillWindowToDraw();
 
 #endif // VISUALS_H

@@ -40,19 +40,27 @@ void menu(Port* port, Navire* navire){
             scanf("%d",&choixSave);
             switch(choixSave){
                 case 1:
-                    int GAME = 1;
-                    int JOUER = 0;
-                    int AJOUTERBATEAU = 0;
-                    while (GAME == 1){
-                        // APPEL DU MENU GFX
-                    
-                        // mettre le bouton ici
-                        printf("Nouveau navire arrivant :\n");
-                        if (AJOUTERBATEAU == 1) {
-                            genererBateaux(port, navire, AJOUTERBATEAU);}
-                        
+                    // int GAME = 1;
+                    // int JOUER = 0;
+                    // int AJOUTERBATEAU = 0;
 
-                    }
+                    GetDrawNB(7);
+                    InitGFXMain(argc, argv);
+
+                    // if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
+                    //     printf("Button jouer\n");
+                    //     initializeSquares();
+                    //     changeSquareColor(3, 0, 0, 255, 0);
+                    //     changeSquareColor(4, 1, 0, 255, 0);
+                    //     Draw3();}
+
+                    // while (GAME == 1){
+                    //     // APPEL DU MENU GFX
+                    //     // mettre le bouton ici
+                    //     printf("Nouveau navire arrivant :\n");
+                    //     if (AJOUTERBATEAU == 1) {
+                    //         genererBateaux(port, navire, AJOUTERBATEAU);}
+                    // }
                     break;
                 case 2:
                     ChargerNavalService("sauvegarde.bin");
@@ -107,23 +115,23 @@ void menu(Port* port, Navire* navire){
             break;
         case 7 :
             printf("\n");
-            printf("--- Dessiner bateau ---\n\n");
+            printf("--- Menu ---\n\n");
             printf("\n\n");
-            GetDrawNB(6);
+            GetDrawNB(7);
             InitGFXMain(argc, argv);
             break;
         case 8 :
             printf("\n");
             printf("--- Dessiner bateau 2  ---\n\n");
             printf("\n\n");
-            GetDrawNB(7);
+            GetDrawNB(8);
             InitGFXMain(argc, argv);
             break;
         case 9 :
             printf("\n");
             printf("--- Dessiner Map  ---\n\n");
             printf("\n\n");
-            GetDrawNB(8);
+            GetDrawNB(9);
             InitGFXMain(argc, argv);
             break;
         default:
