@@ -12,7 +12,7 @@ void menu(Port* port, Navire* navire) {
 
     while (i != 0) {
         printf("----- QUE VOULEZ VOUS FAIRE ? -----\n\n");
-        printf("1 - Lancer\n");
+        printf("1 - Lancer (LOGICIEL EST ICI)\n");
         printf("2 - Créer un navire manuellement\n");
         printf("3 - Créer un navire aléatoire\n");
         printf("4 - Afficher les quais\n");
