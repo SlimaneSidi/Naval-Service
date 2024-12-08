@@ -62,13 +62,21 @@ void gestionEvenement(EvenementGfx evenement)
     static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
     static Button* bouton1 = NULL;
     static Button* bouton2 = NULL;
+    static Button* bouton3 = NULL;
+    static Button* bouton4 = NULL;
+    static Button* bouton5 = NULL;
+    static Port* port = NULL; // Define a Port object
 
     switch (evenement)
     {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
-        bouton1 = initializeButton(50, 100, "Jouer"); //Changer les valeurs dans ourdrawings.c 
-        bouton2 = initializeButton(650, 100, "Quitter"); // et ici en même temps
+        bouton1 = initializeButton(50, 50, "Jouer");
+        bouton2 = initializeButton(200, 50, "Quitter");
+        bouton3 = initializeButton(25, 500, "Afficher quai");
+        bouton4 = initializeButton(25, 440, "Button 4");
+        bouton5 = initializeButton(25, 380, "Button 5");
+        port = initQuai(); // Initialize the Port object
         demandeTemporisation(20);
         break;
 
@@ -89,6 +97,9 @@ void gestionEvenement(EvenementGfx evenement)
             changeSquareColor(3, 0, 0, 255, 0);
             changeSquareColor(4, 1, 0, 255, 0);
             Draw3();
+            drawButton(bouton3);
+            drawButton(bouton4);
+            drawButton(bouton5);
             break;
         }
         break;
@@ -170,8 +181,20 @@ void gestionEvenement(EvenementGfx evenement)
                     }
                     if (isButtonClicked(bouton2, mouseX, mouseY) == 1) {
                         printf("Button quitter\n");
-						libereDonneesImageRGB(&image); 
+                        libereDonneesImageRGB(&image); 
                         termineBoucleEvenements();
+                    }
+                }
+                if (DrawNB == 8) { // Only check buttons in Draw3
+                    if (isButtonClicked(bouton3, mouseX, mouseY) == 1) {
+                        printf("\n\n");
+                        AfficherQuai(port); // Correct function call
+                    }
+                    if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
+                        printf("Button 4 clicked\n");
+                    }
+                    if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
+                        printf("Button 5 clicked\n");
                     }
                 }
             }
@@ -222,4 +245,4 @@ void gestionEvenement(EvenementGfx evenement)
         printf("Hauteur : %d\n", hauteurFenetre());
         break;
     }
-} //?  
+}
