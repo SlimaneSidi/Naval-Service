@@ -18,8 +18,8 @@ void menu(Port* port, Navire* navire){
         printf("4 - Afficher les quais\n");
         printf("5 - Afficher les navires\n");
         printf("6 - Sauvegarder les quais et les navires\n");
-        printf("7 - dessiner bateau\n");
-        printf("8 - dessiner bateau2\n");
+        printf("7 - Menu GFX\n");
+        printf("8 - dessiner bateau\n");
         printf("9 - dessiner map\n");
         printf("0 - Quitter\n\n");
 
@@ -40,31 +40,11 @@ void menu(Port* port, Navire* navire){
             scanf("%d",&choixSave);
             switch(choixSave){
                 case 1:
-                    // int GAME = 1;
-                    // int JOUER = 0;
-                    // int AJOUTERBATEAU = 0;
-
-                    GetDrawNB(7);
+                    GetDrawNB(9);
                     InitGFXMain(argc, argv);
-
-                    // if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
-                    //     printf("Button jouer\n");
-                    //     initializeSquares();
-                    //     changeSquareColor(3, 0, 0, 255, 0);
-                    //     changeSquareColor(4, 1, 0, 255, 0);
-                    //     Draw3();}
-
-                    // while (GAME == 1){
-                    //     // APPEL DU MENU GFX
-                    //     // mettre le bouton ici
-                    //     printf("Nouveau navire arrivant :\n");
-                    //     if (AJOUTERBATEAU == 1) {
-                    //         genererBateaux(port, navire, AJOUTERBATEAU);}
-                    // }
                     break;
                 case 2:
                     ChargerNavalService("sauvegarde.bin");
-                    //AfficherSauvegarde("sauvegarde.bin");
                     break;
                 default:
                     printf("Choix invalide\n");
@@ -72,7 +52,6 @@ void menu(Port* port, Navire* navire){
             printf("\n\n");
             }
             break;
-            
         case 2 : 
             printf("\n");
             printf("--- Créer un navire manuellement ---\n\n");
@@ -80,8 +59,7 @@ void menu(Port* port, Navire* navire){
             Navire* newNavire = CreerNavire(NULL); 
             AjouterFinListeNavire(navire, newNavire, port);
             if (navire == NULL) {
-                navire = newNavire;
-            }
+                navire = newNavire;}
             printf("\n\n");
             break;
         case 3 :
@@ -90,8 +68,7 @@ void menu(Port* port, Navire* navire){
             Navire* newNavireAleatoire = CreerNavireAleatoire(NULL);
             AjouterFinListeNavire(navire, newNavireAleatoire, port);
             if (navire == NULL) {
-                navire = newNavireAleatoire;
-            }
+                navire = newNavireAleatoire;}
             printf("\n\n");
             break;
         case 4 : 
