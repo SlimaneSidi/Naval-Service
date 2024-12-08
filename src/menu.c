@@ -5,6 +5,7 @@
 #include "../include/visuals.h"
 
 void menu(Port* port, Navire* navire){
+    int argc = 0; char **argv = NULL;
     int i = 1;
     printf("\n");
     printf("-----------------LOGICIEL-NAVAL-SERVICE------------------\n\n");
@@ -17,6 +18,9 @@ void menu(Port* port, Navire* navire){
         printf("4 - Afficher les quais\n");
         printf("5 - Afficher les navires\n");
         printf("6 - Sauvegarder les quais et les navires\n");
+        printf("7 - dessiner bateau\n");
+        printf("8 - dessiner bateau2\n");
+        printf("9 - dessiner map\n");
         printf("0 - Quitter\n\n");
 
         int choix = 0; 
@@ -26,6 +30,7 @@ void menu(Port* port, Navire* navire){
         switch(choix){
         case 0 :   // QUITTER
             i = 0;
+
             break;
         case 1 :   // LANCER
             printf("\n");
@@ -101,13 +106,26 @@ void menu(Port* port, Navire* navire){
             printf("\n");
             break;
         case 7 :
-            int argc = 0; char **argv = NULL;
             printf("\n");
             printf("--- Dessiner bateau ---\n\n");
-            drawBoat(argc, argv);
             printf("\n\n");
+            GetDrawNB(6);
+            InitGFXMain(argc, argv);
             break;
-            
+        case 8 :
+            printf("\n");
+            printf("--- Dessiner bateau 2  ---\n\n");
+            printf("\n\n");
+            GetDrawNB(7);
+            InitGFXMain(argc, argv);
+            break;
+        case 9 :
+            printf("\n");
+            printf("--- Dessiner Map  ---\n\n");
+            printf("\n\n");
+            GetDrawNB(8);
+            InitGFXMain(argc, argv);
+            break;
         default:
         printf("error");
         }
