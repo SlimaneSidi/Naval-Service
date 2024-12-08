@@ -90,10 +90,13 @@ void gestionEvenement(EvenementGfx evenement){
             Draw3();
             break;
         case 9:
-            initializeSquares();
+             initializeSquares();
             changeSquareColor(3, 0, 0, 255, 0);
             changeSquareColor(4, 1, 0, 255, 0);
             Draw3();
+            drawButton(bouton3);
+            drawButton(bouton4);
+            drawButton(bouton5);
             break;}
         break;
     case Clavier:
