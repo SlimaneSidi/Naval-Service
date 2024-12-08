@@ -195,7 +195,7 @@ void gestionEvenement(EvenementGfx evenement){
 
 void KillWindowToDraw() {
     //libereDonneesImageRGB(image); 
-    termineBoucleEvenements();
+    effaceFenetre(0, 200, 0);
     lanceBoucleEvenements();
     initializeSquares();
     printf("Squares initialized\n");
