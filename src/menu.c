@@ -18,8 +18,8 @@ void menu(Port* port, Navire* navire) {
         printf("4 - Afficher les quais\n");
         printf("5 - Afficher les navires\n");
         printf("6 - Sauvegarder les quais et les navires\n");
-        printf("7 - dessiner bateau\n");
-        printf("8 - dessiner bateau2\n");
+        printf("7 - Menu GFX\n");
+        printf("8 - dessiner bateau\n");
         printf("9 - dessiner map\n");
         printf("0 - Quitter\n\n");
 
@@ -36,18 +36,19 @@ void menu(Port* port, Navire* navire) {
             printf("--- Lancement du logiciel naval service ---\n\n");
             printf("1 - Lancer le programme sans sauvegarde\n");
             printf("2 - Chercher une sauvegarde\n");
-            scanf("%d", &choixSave);
-            switch (choixSave) {
-            case 1:
-                GetDrawNB(7);
-                InitGFXMain(argc, argv, navire);
-                break;
-            case 2:
-                ChargerNavalService("sauvegarde.bin");
-                break;
-            default:
-                printf("Choix invalide\n");
-                break;
+            scanf("%d",&choixSave);
+            switch(choixSave){
+                case 1:
+                    GetDrawNB(9);
+                    InitGFXMain(argc, argv, navire);
+                    break;
+                case 2:
+                    ChargerNavalService("sauvegarde.bin");
+                    break;
+                default:
+                    printf("Choix invalide\n");
+                    break;
+            printf("\n\n");
             }
             printf("\n\n");
             break;
@@ -58,8 +59,7 @@ void menu(Port* port, Navire* navire) {
             Navire* newNavire = CreerNavire(NULL);
             AjouterFinListeNavire(&navire, newNavire, port);
             if (navire == NULL) {
-                navire = newNavire;
-            }
+                navire = newNavire;}
             printf("\n\n");
             break;
         case 3:
@@ -68,8 +68,7 @@ void menu(Port* port, Navire* navire) {
             Navire* newNavireAleatoire = CreerNavireAleatoire(NULL);
             AjouterFinListeNavire(&navire, newNavireAleatoire, port);
             if (navire == NULL) {
-                navire = newNavireAleatoire;
-            }
+                navire = newNavireAleatoire;}
             printf("\n\n");
             break;
         case 4:

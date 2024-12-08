@@ -236,12 +236,12 @@ void gestionEvenement(EvenementGfx evenement) {
 void KillWindowToDraw() {
     //libereDonneesImageRGB(image); 
     effaceFenetre(0, 200, 0);
-    lanceBoucleEvenements();
-    initializeSquares();
-    printf("Squares initialized\n");
-    changeSquareColor(3, 0, 0, 255, 0);
-    changeSquareColor(4, 1, 0, 255, 0);
-    printf("Square colors changed\n");
-    Draw3();
-    printf("Draw3 called\n");
+    // lanceBoucleEvenements();
+    // initializeSquares();
+    // printf("Squares initialized\n");
+    // changeSquareColor(3, 0, 0, 255, 0);
+    // changeSquareColor(4, 1, 0, 255, 0);
+    // printf("Square colors changed\n");
+    // Draw3();
+    // printf("Draw3 called\n");
 }
