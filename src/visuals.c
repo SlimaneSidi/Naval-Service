@@ -6,15 +6,13 @@
 #include <time.h>
 
 Navire* navire1;
-
 Navire* InitNavire(Navire* navire) {
     navire1 = navire;
     return navire1;
 }
 
-int DrawNB; // Define the DrawNB variable
-//Navire* navire = NULL; // Declare the navire variable
-Port* port = NULL; // Declare the port variable
+int DrawNB;
+Port* port = NULL;
 
 int drawBoat(int argc, char **argv) {
     initialiseGfx(argc, argv);
@@ -34,9 +32,9 @@ Button* initializeButton(int x, int y, const char* label) {
 }
 
 void drawButton(Button* button) {
-    couleurCourante(200, 200, 200); // Set color to light gray for button background
+    couleurCourante(200, 200, 200);
     rectangle(button->x, button->y, button->x + button->width, button->y + button->height);
-    couleurCourante(0, 0, 0); // Set color to black for text
+    couleurCourante(0, 0, 0);
     afficheChaine(button->label, 12, button->x + 10, button->y + 20);
 }
 
@@ -71,8 +69,8 @@ void cercle(float centreX, float centreY, float rayon) {
 }
 
 void gestionEvenement(EvenementGfx evenement) {
-    static bool pleinEcran = false;          // Pour savoir si on est en mode plein ecran ou pas
-    static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
+    static bool pleinEcran = false;          
+    static DonneesImageRGB *image = NULL; 
     static Button* bouton1 = NULL;
     static Button* bouton2 = NULL;
     static Button* bouton3 = NULL;
@@ -81,7 +79,6 @@ void gestionEvenement(EvenementGfx evenement) {
 	static Button* bouton6 = NULL;
     static Button* bouton7 = NULL;
     
-	
     switch (evenement) {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
@@ -92,13 +89,13 @@ void gestionEvenement(EvenementGfx evenement) {
         bouton5 = initializeButton(25, 380, "Cree navire");
 		bouton6 = initializeButton(25, 370, "distribution");
         bouton7 = initializeButton(25, 210, "Quitter");
-        port = initQuai(); // Initialize the Port object
+        port = initQuai(); 
         demandeTemporisation(20);
         break;
     case Temporisation:
         break;
     case Affichage:
-        switch (DrawNB) { // On dessine en fonction de la valeur de DrawNB
+        switch (DrawNB) {
         case 7:
             Draw1();
             break;
@@ -120,14 +117,14 @@ void gestionEvenement(EvenementGfx evenement) {
     case Clavier:
         printf("%c : ASCII %d\n", caractereClavier(), caractereClavier());
         switch (caractereClavier()) {
-        case 'Q': /* Pour sortir quelque peu proprement du programme */
+        case 'Q':
         case 'q':
             libereDonneesImageRGB(&image); 
             termineBoucleEvenements();
             break;
         case 'F':
         case 'f':
-            pleinEcran = !pleinEcran; // Changement de mode plein ecran
+            pleinEcran = !pleinEcran;
             if (pleinEcran)
                 modePleinEcran();
             else
@@ -135,20 +132,14 @@ void gestionEvenement(EvenementGfx evenement) {
             break;
         case 'R':
         case 'r':
-            // Configure le systeme pour generer un message Temporisation
-            // toutes les 20 millisecondes (rapide)
             demandeTemporisation(20);
             break;
         case 'L':
         case 'l':
-            // Configure le systeme pour generer un message Temporisation
-            // toutes les 100 millisecondes (lent)
             demandeTemporisation(100);
             break;
         case 'S':
         case 's':
-            // Configure le systeme pour ne plus generer de message Temporisation
-            demandeTemporisation(-1);
             break;
         case 'W':
         case 'w':
@@ -158,7 +149,6 @@ void gestionEvenement(EvenementGfx evenement) {
             break;
         case 'X':
         case 'x':
-            // Configure le systeme pour ne plus generer de message Temporisation
             break;
         case 'C':
         case 'c':
@@ -176,7 +166,7 @@ void gestionEvenement(EvenementGfx evenement) {
             if (etatBoutonSouris() == GaucheAppuye) {
                 int mouseX = abscisseSouris();
                 int mouseY = ordonneeSouris();
-                if (DrawNB == 6) { // Only check buttons in Draw1
+                if (DrawNB == 6) { 
                     if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
                         printf("Button jouer\n");
                     }
@@ -186,15 +176,15 @@ void gestionEvenement(EvenementGfx evenement) {
                         termineBoucleEvenements();
                     }
                 }
-                if (DrawNB == 9) { // Only check buttons in Draw3
+                if (DrawNB == 9) { 
                     if (isButtonClicked(bouton3, mouseX, mouseY) == 1) {
                         printf("\n\n");
-                        AfficherQuai(port); // Correct function call
+                        AfficherQuai(port); 
                     }
                     if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
                         printf("\n\n");
                         printf("Affichage des navires:\n");
-                        AfficherNavire(navire1); // Display existing ships
+                        AfficherNavire(navire1);
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
                         printf("Créer un navire :\n");
@@ -214,51 +204,30 @@ void gestionEvenement(EvenementGfx evenement) {
             rafraichisFenetre();
             break;
         case GaucheRelache:
-            printf("Bouton gauche relache en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
             break;
         case DroiteAppuye:
         case DroiteRelache:
-            puts("Bouton droite");
             break;
         case MilieuAppuye:
         case MilieuRelache:
-            puts("Bouton milieu");
             break;
         case ScrollDown:
-            puts("Scroll down");
             break;
         case ScrollUp:
-            puts("Scroll up");
             break;
         case ScrollRight:
-            puts("Scroll right");
             break;
         case ScrollLeft:
-            puts("Scroll left");
             break;
         }
         break;
-    case Souris: // Si la souris est deplacee
+    case Souris:
         break;
-    case Inactivite: // Quand aucun message n'est disponible
+    case Inactivite: 
         break;
-    case Redimensionnement: // La taille de la fenetre a ete modifie ou on est passe en plein ecran
-        // Donc le systeme nous en informe
+    case Redimensionnement: 
         printf("Largeur : %d\t", largeurFenetre());
         printf("Hauteur : %d\n", hauteurFenetre());
         break;
     }
-}
-
-void KillWindowToDraw() {
-    //libereDonneesImageRGB(image); 
-    effaceFenetre(0, 200, 0);
-    // lanceBoucleEvenements();
-    // initializeSquares();
-    // printf("Squares initialized\n");
-    // changeSquareColor(3, 0, 0, 255, 0);
-    // changeSquareColor(4, 1, 0, 255, 0);
-    // printf("Square colors changed\n");
-    // Draw3();
-    // printf("Draw3 called\n");
 }
