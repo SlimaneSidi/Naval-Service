@@ -222,4 +222,4 @@ void gestionEvenement(EvenementGfx evenement)
         printf("Hauteur : %d\n", hauteurFenetre());
         break;
     }
-}
+} //?  
