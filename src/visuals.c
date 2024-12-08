@@ -66,7 +66,7 @@ void gestionEvenement(EvenementGfx evenement)
     static Button* bouton4 = NULL;
     static Button* bouton5 = NULL;
     static Port* port = NULL; // Define a Port object
-	static Navire* navire = NULL;
+	//static Navire* navire = NULL;
 
     switch (evenement)
     {
@@ -78,7 +78,7 @@ void gestionEvenement(EvenementGfx evenement)
         bouton4 = initializeButton(25, 440, "Button 4");
         bouton5 = initializeButton(25, 380, "Button 5");
         port = initQuai(); // Initialize the Port object
-		navire = CreerNavireAleatoire(navire);
+		//navire = CreerNavireAleatoire(navire);
         demandeTemporisation(20);
         break;
 
@@ -172,7 +172,7 @@ void gestionEvenement(EvenementGfx evenement)
         switch (etatBoutonSouris())
         {
         case GaucheAppuye:
-            printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
+           // printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
             changeSquareColor(1, 1, 200, 255, 0);
             if (etatBoutonSouris() == GaucheAppuye) {
                 int mouseX = abscisseSouris();
@@ -195,7 +195,7 @@ void gestionEvenement(EvenementGfx evenement)
                     if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
                         printf("\n\n");
 						system("clear");
-						AfficherNavire(navire);
+						//AfficherNavire(navire);
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
                         printf("Button 5 clicked\n");
@@ -206,12 +206,12 @@ void gestionEvenement(EvenementGfx evenement)
             break;
 
         case GaucheRelache:
-            printf("Bouton gauche relache en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
+            //printf("Bouton gauche relache en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
             break;
 
         case DroiteAppuye:
         case DroiteRelache:
-            puts("Bouton droite");
+           // puts("Bouton droite");
             break;
 
         case MilieuAppuye:
