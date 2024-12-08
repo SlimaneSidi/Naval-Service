@@ -115,7 +115,6 @@ void gestionEvenement(EvenementGfx evenement) {
         }
         break;
     case Clavier:
-        printf("%c : ASCII %d\n", caractereClavier(), caractereClavier());
         switch (caractereClavier()) {
         case 'Q':
         case 'q':
@@ -161,7 +160,6 @@ void gestionEvenement(EvenementGfx evenement) {
     case BoutonSouris:
         switch (etatBoutonSouris()) {
         case GaucheAppuye:
-            printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
             changeSquareColor(1, 1, 200, 255, 0);
             if (etatBoutonSouris() == GaucheAppuye) {
                 int mouseX = abscisseSouris();
