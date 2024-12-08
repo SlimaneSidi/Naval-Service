@@ -156,11 +156,11 @@ void Draw1() {
     triangle(400, 200, 400, 400, 500, 200);
 
     // Draw the first button
-    Button* myButton1 = initializeButton(50, 50, "Click Me");
+    Button* myButton1 = initializeButton(50, 100, "Jouer");
     drawButton(myButton1);
 
     // Draw the second button to the right of the first button
-    Button* myButton2 = initializeButton(200, 50, "Button 2");
+    Button* myButton2 = initializeButton(650, 100, "Quitter");
     drawButton(myButton2);
 
     rafraichisFenetre();

@@ -67,8 +67,8 @@ void gestionEvenement(EvenementGfx evenement)
     {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
-        bouton1 = initializeButton(50, 50, "Click Me");
-        bouton2 = initializeButton(200, 50, "Button 2");
+        bouton1 = initializeButton(50, 100, "Jouer");
+        bouton2 = initializeButton(650, 100, "Quitter");
         demandeTemporisation(20);
         break;
 
@@ -167,10 +167,12 @@ void gestionEvenement(EvenementGfx evenement)
                 int mouseX = abscisseSouris();
                 int mouseY = ordonneeSouris();
                 if (isButtonClicked(bouton1, mouseX, mouseY) == 1) {
-                    printf("Button clicked!\n");
+                    printf("Button jouer!\n");
                 }
                 if (isButtonClicked(bouton2, mouseX, mouseY) == 1) {
-                    printf("Deuxieme bouton appuyé\n");
+                    printf("button quitter\n");
+					libereDonneesImageRGB(&image); 
+                    termineBoucleEvenements();
                 }
             }
             rafraichisFenetre();
