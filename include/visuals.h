@@ -5,7 +5,6 @@
 #include "../lib/gfxlib/GfxLib.h" // Seul cet include est necessaire pour faire du graphique
 #include "../lib/gfxlib/BmpLib.h" // Cet include permet de manipuler des fichiers BMP
 #include "../lib/gfxlib/ESLib.h" // Pour utiliser valeurAleatoire()
-//#include "../include/ourdrawings.h"
 
 // Largeur et hauteur par defaut d'une image correspondant a nos criteres
 #define LargeurFenetre 800
@@ -17,7 +16,16 @@ typedef struct {
     char label[20];
 } Button;
 
+typedef struct {
+    int x, y;
+    int size;
+    int r, g, b; // Color components
+    char number[2];
+} Square;
+
 extern int DrawNB; // Variable globale pour savoir quel dessin effectuer
+extern Square docks[4][4]; // Array to store squares for each dock
+extern Square waitingDock[4]; // Array to store squares for the waiting dock
 
 int InitGFXMain(int argc, char **argv);
 void cercle(float centreX, float centreY, float rayon);
@@ -28,8 +36,8 @@ void Draw2();
 void Draw3();
 void initializeSquares();
 void changeSquareColor(int dockIndex, int squareIndex, int r, int g, int b);
-void initializeButton();
+Button* initializeButton();
 void drawButton(Button* button);
 int isButtonClicked(Button* button, int mouseX, int mouseY);
 
-#endif
+#endif // VISUALS_H
