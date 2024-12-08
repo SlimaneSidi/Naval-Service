@@ -77,7 +77,11 @@ void gestionEvenement(EvenementGfx evenement) {
     static Button* bouton2 = NULL;
     static Button* bouton3 = NULL;
     static Button* bouton4 = NULL;
-    static Button* bouton5 = NULL;
+	static Button* bouton5 = NULL;
+	static Button* bouton6 = NULL;
+    static Button* bouton7 = NULL;
+    
+	
     switch (evenement) {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
@@ -85,7 +89,9 @@ void gestionEvenement(EvenementGfx evenement) {
         bouton2 = initializeButton(200, 50, "Quitter");
         bouton3 = initializeButton(25, 500, "Afficher quai");
         bouton4 = initializeButton(25, 440, "Afficher navires");
-        bouton5 = initializeButton(25, 380, "Button 5");
+        bouton5 = initializeButton(25, 380, "Cree navire");
+		bouton6 = initializeButton(25, 370, "distribution");
+        bouton7 = initializeButton(25, 210, "Quitter");
         port = initQuai(); // Initialize the Port object
         demandeTemporisation(20);
         break;
@@ -107,6 +113,7 @@ void gestionEvenement(EvenementGfx evenement) {
             drawButton(bouton3);
             drawButton(bouton4);
             drawButton(bouton5);
+			drawButton(bouton6);
             break;
         }
         break;
@@ -190,7 +197,17 @@ void gestionEvenement(EvenementGfx evenement) {
                         AfficherNavire(navire1); // Display existing ships
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
-                        printf("Button 5 clicked\n");
+                        printf("Créer un navire :\n");
+                        GenererBateaux(port, &navire1, 0);
+                    }
+					 if (isButtonClicked(bouton6, mouseX, mouseY) == 1) {
+                        printf("Distribution :\n");
+                        GestionMouillage(port, navire1);
+                    }
+                    if (isButtonClicked(bouton7, mouseX, mouseY) == 1) {
+                        printf("Button quitter\n");
+                        libereDonneesImageRGB(&image); 
+                        termineBoucleEvenements();
                     }
                 }
             }

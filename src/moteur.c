@@ -1,6 +1,8 @@
 #include "../include/moteur.h"
 #include "../include/nomBateaux.h"
 
+int id_counter = 1; // ID du navire
+
 const char* TypeNavireToString(TypeNavire type) {
     switch (type) {
         case NAVIRE_PASSAGERS: return "Navire de passagers";
@@ -18,7 +20,7 @@ Port* initQuai(){
     port->QuaiPassager->NumeroQuai = 1; //id
     port->QuaiPassager->Profondeur = 10;
     port->QuaiPassager->Type = NAVIRE_PASSAGERS;
-    port->QuaiPassager->NbNaviresAccostes = 4;
+    port->QuaiPassager->NbNaviresAccostes = 0;
     port->QuaiPassager->NextNavire = NULL;
 
     port->QuaiMarchand = malloc(sizeof(Quai));   // MARCHAND
@@ -26,7 +28,7 @@ Port* initQuai(){
     port->QuaiMarchand->NumeroQuai = 2; //id
     port->QuaiMarchand->Profondeur = 10;
     port->QuaiMarchand->Type = NAVIRE_MARCHANDISES;
-    port->QuaiMarchand->NbNaviresAccostes = 3;
+    port->QuaiMarchand->NbNaviresAccostes = 0;
     port->QuaiMarchand->NextNavire = NULL;
 
     port->QuaiPetrolier = malloc(sizeof(Quai));   // PETROLIER
@@ -34,7 +36,7 @@ Port* initQuai(){
     port->QuaiPetrolier->NumeroQuai = 3; //id
     port->QuaiPetrolier->Profondeur = 10;
     port->QuaiPetrolier->Type = NAVIRE_PETROLIER;
-    port->QuaiPetrolier->NbNaviresAccostes = 1;
+    port->QuaiPetrolier->NbNaviresAccostes = 0;
     port->QuaiPetrolier->NextNavire = NULL;
 
     port->QuaiYacht = malloc(sizeof(Quai));   // YACHT
@@ -42,7 +44,7 @@ Port* initQuai(){
     port->QuaiYacht->NumeroQuai = 4; //id
     port->QuaiYacht->Profondeur = 10;
     port->QuaiYacht->Type = NAVIRE_YACHT;
-    port->QuaiYacht->NbNaviresAccostes = 3;
+    port->QuaiYacht->NbNaviresAccostes = 0;
     port->QuaiYacht->NextNavire = NULL;
 
     port->QuaiMouillage = malloc(sizeof(Quai));  // MOUILLAGE
@@ -50,7 +52,7 @@ Port* initQuai(){
     port->QuaiMouillage->NumeroQuai = 0; //id
     port->QuaiMouillage->Profondeur = 10;
     port->QuaiMouillage->Type = NAVIRE_ALL;
-    port->QuaiMouillage->NbNaviresAccostes = 4;
+    port->QuaiMouillage->NbNaviresAccostes = 0;
     port->QuaiMouillage->NextNavire = NULL;
 
     return port;
@@ -114,8 +116,8 @@ void AjouterFinListeNavire(Navire** navire, Navire* new, Port* port) {
             break;
     }
 }
+
 Navire* CreerNavire(Navire* navire) {
-    static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
 
     const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
@@ -163,20 +165,16 @@ Navire* CreerNavire(Navire* navire) {
 }
 
 Navire* CreerNavireAleatoire(Navire* navire) {
-    static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
     if (navire1 == NULL) {
         printf("Erreur d'allocation de mémoire pour le navire\n");
-        exit(1);
-    }
-
+        exit(1);}
     const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
     navire1->nom = malloc(strlen(nomAleatoire) + 1);
     if (navire1->nom == NULL) {
         printf("Erreur d'allocation de mémoire pour le nom du navire\n");
         free(navire1);
-        exit(1);
-    }
+        exit(1);}
     strcpy(navire1->nom, nomAleatoire);
     printf("Nom du navire : %s\n\n", navire1->nom);
     navire1->id = id_counter++;
@@ -184,7 +182,6 @@ Navire* CreerNavireAleatoire(Navire* navire) {
     strcpy(navire1->etat, "en mer");
     navire1->CapaciteChargement = rand() % 1000 + 1;
     navire1->NextNavire = NULL;
-
     return navire1;
 }
 
@@ -247,7 +244,7 @@ int boutonClicked(int OnClicked){
     return OnClicked;
 }
 
-Navire* genererBateaux(Port* port, Navire** navire, int OnClicked) {
+Navire* GenererBateaux(Port* port, Navire** navire, int OnClicked) {
     printf("(1) - Génération d'un navire aléatoire\n");
     printf("(2) - Génération d'un navire manuelle\n");
     int choix = 0;
@@ -272,89 +269,94 @@ Navire* genererBateaux(Port* port, Navire** navire, int OnClicked) {
         return *navire;}
 }
 
-void gestionMouillage(Navire* navire, Port* port){
+void GestionMouillage(Port* port, Navire* navire) {
+    
+    if (strcmp(navire->etat, "accosté") == 0) {
+        printf("Le navire est déjà accosté\n");
+        if (navire->NextNavire != NULL) {
+            GestionMouillage(port, navire->NextNavire);}
+        return;}
     strcpy(navire->etat, "en attente");
-    distribNavires(navire, port);
+    DistribuerNavires(navire, port);
 }
 
-
-//PremierElementListe correspond à &(port->QuaiMouillage->NextNavire)
-int supprimeNavire(Navire**PremierElementListe,Navire* navireASupprimer){
-    //printf("Tous les quais sont pleins. Le navire sera supprimé.\n");
-    if (PremierElementListe == NULL || *PremierElementListe == NULL || navireASupprimer == NULL) {
-        printf("Erreur de suppression\n");
-        return 0;}
-    // Si le navire à supprimer est le premier élément ( peu probable dans la logique des choses)
-    if (*PremierElementListe == navireASupprimer) {
-        *PremierElementListe = navireASupprimer->NextNavire; // Déplace le PremierElementListe au suivant
-        free(navireASupprimer);              // Libère la mémoire du navire
-        printf("Navire supprimé (premier de la liste).\n");
-        return 0;}
-    // Recherche du navire précédant celui à supprimer
-    Navire* tmp = *PremierElementListe;
-    while (tmp->NextNavire != NULL && tmp->NextNavire != navireASupprimer) {
-        tmp = tmp->NextNavire;}
-    // Si le navire est trouvé, on le retire de la liste
-    if (tmp->NextNavire == navireASupprimer) {
-        tmp->NextNavire = navireASupprimer->NextNavire; // Sauter le navire
-        free(navireASupprimer);                            // Libérer la mémoire
-        printf("Navire supprimé de la liste.\n");} 
-    else {
-        printf("Erreur : Navire à supprimer introuvable dans la liste.\n");}
-    return 0;
+void DistribuerNavires(Navire* navire, Port* port) {
+    if (navire->type == NAVIRE_PASSAGERS) {
+        if (port->QuaiPassager->NbNaviresAccostes < 4) {
+            port->QuaiPassager->NbNaviresAccostes++;
+            strcpy(navire->etat, "accosté");
+            printf("Navire de passagers ajouté au quai des passagers\n");
+        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            port->QuaiMouillage->NbNaviresAccostes++;
+            strcpy(navire->etat, "mouillage");
+            printf("Navire de passagers ajouté au quai de mouillage\n");
+        } else {
+            SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
+            printf("Navire de passagers supprimé\n");
+        }
+    } else if (navire->type == NAVIRE_MARCHANDISES) {
+        if (port->QuaiMarchand->NbNaviresAccostes < 3) {
+            port->QuaiMarchand->NbNaviresAccostes++;
+            strcpy(navire->etat, "accosté");
+            printf("Navire de marchandises ajouté au quai des marchandises\n");
+        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            port->QuaiMouillage->NbNaviresAccostes++;
+            strcpy(navire->etat, "mouillage");
+            printf("Navire de marchandises ajouté au quai de mouillage\n");
+        } else {
+            SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
+            printf("Navire de marchandises supprimé\n");
+        }
+    } else if (navire->type == NAVIRE_PETROLIER) {
+        if (port->QuaiPetrolier->NbNaviresAccostes < 1) {
+            port->QuaiPetrolier->NbNaviresAccostes++;
+            strcpy(navire->etat, "accosté");
+            printf("Pétrolier ajouté au quai des pétroliers\n");
+        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            port->QuaiMouillage->NbNaviresAccostes++;
+            strcpy(navire->etat, "mouillage");
+            printf("Pétrolier ajouté au quai de mouillage\n");
+        } else {
+            SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
+            printf("Pétrolier supprimé\n");
+        }
+    } else if (navire->type == NAVIRE_YACHT) {
+        if (port->QuaiYacht->NbNaviresAccostes < 4) {
+            port->QuaiYacht->NbNaviresAccostes++;
+            strcpy(navire->etat, "accosté");
+            printf("Yacht ajouté au quai des yachts\n");
+        } else if (port->QuaiMouillage->NbNaviresAccostes < 4) {
+            port->QuaiMouillage->NbNaviresAccostes++;
+            strcpy(navire->etat, "mouillage");
+            printf("Yacht ajouté au quai de mouillage\n");
+        } else {
+            SupprimerNavireDuMouillage(&(port->QuaiMouillage->NextNavire), navire);
+            printf("Yacht supprimé\n");
+        }
+    }
 }
 
-Quai* distribNavires(Navire *navire, Port*port){
-    if(navire->type == NAVIRE_PASSAGERS){
-        if(port->QuaiYacht->NbNaviresAccostes < 4){
-            port->QuaiPassager->NbNaviresAccostes++; 
-            strcpy(navire->etat, "accosté");
-            printf("navire de passagers ajoute au quai des passagers ");
-            return port->QuaiPassager;}
-        else if (port->QuaiMouillage->NbNaviresAccostes < 4){
-            port->QuaiMouillage->NbNaviresAccostes ++;
-            strcpy(navire->etat, "accosté");
-            printf("bateau au quai de mouillage");
-            return port->QuaiMouillage;}
-        else { supprimeNavire(&(port->QuaiMouillage->NextNavire),navire); 
-        printf("navire supprime");
-        return NULL;}}
+void SupprimerNavireDuMouillage(Navire** head, Navire* navire) {
+    Navire* temp = *head;
+    Navire* prev = NULL;
 
-    else if (navire->type == NAVIRE_MARCHANDISES){
-        if(port->QuaiMarchand->NbNaviresAccostes < 3){
-            port->QuaiMarchand->NbNaviresAccostes ++; 
-            strcpy(navire->etat, "accosté");
-            return port->QuaiMarchand;}
-        else if (port->QuaiMouillage->NbNaviresAccostes < 4){
-            port->QuaiMouillage->NbNaviresAccostes ++; 
-            return port->QuaiMouillage;} 
-        else { supprimeNavire(&(port->QuaiMouillage->NextNavire),navire); 
-        printf("navire supprime");
-        return NULL;}}
+    // Si le navire à supprimer est le premier de la liste
+    if (temp != NULL && temp == navire) {
+        *head = temp->NextNavire;
+        free(temp);
+        return;
+    }
 
-    else if (navire->type == NAVIRE_PETROLIER ){
-        if( port->QuaiPetrolier->NbNaviresAccostes < 1){
-            port->QuaiPetrolier->NbNaviresAccostes ++; 
-            strcpy(navire->etat, "accosté");
-            return port->QuaiPetrolier;}
-        else if (port->QuaiMouillage->NbNaviresAccostes < 4){
-            port->QuaiMouillage->NbNaviresAccostes ++; 
-            return port->QuaiMouillage;}
-        else {supprimeNavire(&(port->QuaiMouillage->NextNavire),navire)  ; 
-        printf("navire supprime");
-        return NULL;}}
+    // Recherchez le navire à supprimer
+    while (temp != NULL && temp != navire) {
+        prev = temp;
+        temp = temp->NextNavire;
+    }
 
-    else if (navire->type == NAVIRE_YACHT ){
-        if( port->QuaiYacht->NbNaviresAccostes < 4) {
-            port->QuaiYacht->NbNaviresAccostes ++; 
-            strcpy(navire->etat, "accosté");
-            return port->QuaiYacht;} 
-        else if (port->QuaiMouillage->NbNaviresAccostes < 4){
-            port->QuaiMouillage->NbNaviresAccostes ++; 
-            return port->QuaiMouillage;}
-        else {supprimeNavire(&(port->QuaiMouillage->NextNavire),navire); //Quel est le premier element ?
-        printf("navire supprime");
-        return NULL;}}
-    return NULL;
+    // Si le navire n'est pas trouvé
+    if (temp == NULL) return;
+
+    // Détachez le navire de la liste
+    prev->NextNavire = temp->NextNavire;
+    free(temp);
 }
-
