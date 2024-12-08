@@ -6,12 +6,14 @@
 #include <time.h>
 
 int DrawNB; // Define the DrawNB variable
+Navire* navire = NULL; // Declare the navire variable
+Port* port = NULL; // Declare the port variable
 
 int drawBoat(int argc, char **argv) {
-	initialiseGfx(argc, argv);
-	prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
+    initialiseGfx(argc, argv);
+    prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
     lanceBoucleEvenements();
-	return 0;
+    return 0;
 }
 
 Button* initializeButton(int x, int y, const char* label) {
@@ -36,19 +38,19 @@ int isButtonClicked(Button* button, int mouseX, int mouseY) {
            mouseY >= button->y && mouseY <= button->y + button->height;
 }
 
-int InitGFXMain(int argc, char **argv){
+int InitGFXMain(int argc, char **argv) {
     initialiseGfx(argc, argv);
     prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
     lanceBoucleEvenements();
     return 0;
 }
 
-int GetDrawNB(int NB){
+int GetDrawNB(int NB) {
     DrawNB = NB;
     return DrawNB;
 }
 
-void cercle(float centreX, float centreY, float rayon){
+void cercle(float centreX, float centreY, float rayon) {
     const int Pas = 20; 
     const double PasAngulaire = 2. * M_PI / Pas;
     int index;
@@ -56,10 +58,11 @@ void cercle(float centreX, float centreY, float rayon){
         const double angle = 2. * M_PI * index / Pas; 
         triangle(centreX, centreY,
                  centreX + rayon * cos(angle), centreY + rayon * sin(angle),
-                 centreX + rayon * cos(angle + PasAngulaire), centreY + rayon * sin(angle + PasAngulaire));}
+                 centreX + rayon * cos(angle + PasAngulaire), centreY + rayon * sin(angle + PasAngulaire));
+    }
 }
 
-void gestionEvenement(EvenementGfx evenement){
+void gestionEvenement(EvenementGfx evenement) {
     static bool pleinEcran = false;          // Pour savoir si on est en mode plein ecran ou pas
     static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
     static Button* bouton1 = NULL;
@@ -67,14 +70,13 @@ void gestionEvenement(EvenementGfx evenement){
     static Button* bouton3 = NULL;
     static Button* bouton4 = NULL;
     static Button* bouton5 = NULL;
-    static Port* port = NULL; // Define a Port object
-    switch (evenement){
+    switch (evenement) {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
         bouton1 = initializeButton(50, 50, "Jouer");
         bouton2 = initializeButton(200, 50, "Quitter");
         bouton3 = initializeButton(25, 500, "Afficher quai");
-        bouton4 = initializeButton(25, 440, "Button 4");
+        bouton4 = initializeButton(25, 440, "Afficher navires");
         bouton5 = initializeButton(25, 380, "Button 5");
         port = initQuai(); // Initialize the Port object
         demandeTemporisation(20);
@@ -82,7 +84,7 @@ void gestionEvenement(EvenementGfx evenement){
     case Temporisation:
         break;
     case Affichage:
-        switch (DrawNB){ // On dessine en fonction de la valeur de DrawNB
+        switch (DrawNB) { // On dessine en fonction de la valeur de DrawNB
         case 7:
             Draw1();
             break;
@@ -90,18 +92,19 @@ void gestionEvenement(EvenementGfx evenement){
             Draw3();
             break;
         case 9:
-             initializeSquares();
+            initializeSquares();
             changeSquareColor(3, 0, 0, 255, 0);
             changeSquareColor(4, 1, 0, 255, 0);
             Draw3();
             drawButton(bouton3);
             drawButton(bouton4);
             drawButton(bouton5);
-            break;}
+            break;
+        }
         break;
     case Clavier:
         printf("%c : ASCII %d\n", caractereClavier(), caractereClavier());
-        switch (caractereClavier()){
+        switch (caractereClavier()) {
         case 'Q': /* Pour sortir quelque peu proprement du programme */
         case 'q':
             libereDonneesImageRGB(&image); 
@@ -144,13 +147,14 @@ void gestionEvenement(EvenementGfx evenement){
             break;
         case 'C':
         case 'c':
-            break;}
+            break;
+        }
         break;
     case ClavierSpecial:
         printf("ASCII %d\n", toucheClavier());
         break;
     case BoutonSouris:
-        switch (etatBoutonSouris()){
+        switch (etatBoutonSouris()) {
         case GaucheAppuye:
             printf("Bouton gauche appuye en : (%d, %d)\n", abscisseSouris(), ordonneeSouris());
             changeSquareColor(1, 1, 200, 255, 0);
@@ -167,15 +171,15 @@ void gestionEvenement(EvenementGfx evenement){
                         termineBoucleEvenements();
                     }
                 }
-                if (DrawNB == 8) { // Only check buttons in Draw3
+                if (DrawNB == 9) { // Only check buttons in Draw3
                     if (isButtonClicked(bouton3, mouseX, mouseY) == 1) {
                         printf("\n\n");
                         AfficherQuai(port); // Correct function call
                     }
                     if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
                         printf("\n\n");
-						system("clear");
-						//AfficherNavire(navire);
+                        printf("Affichage des navires:\n");
+                        AfficherNavire(navire); // Display existing ships
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
                         printf("Button 5 clicked\n");
@@ -206,7 +210,8 @@ void gestionEvenement(EvenementGfx evenement){
             break;
         case ScrollLeft:
             puts("Scroll left");
-            break;}
+            break;
+        }
         break;
     case Souris: // Si la souris est deplacee
         break;
@@ -216,7 +221,8 @@ void gestionEvenement(EvenementGfx evenement){
         // Donc le systeme nous en informe
         printf("Largeur : %d\t", largeurFenetre());
         printf("Hauteur : %d\n", hauteurFenetre());
-        break;}
+        break;
+    }
 }
 
 void KillWindowToDraw() {
@@ -231,5 +237,3 @@ void KillWindowToDraw() {
     Draw3();
     printf("Draw3 called\n");
 }
-
-//?

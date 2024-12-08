@@ -56,11 +56,11 @@ Port* initQuai(){
     return port;
 }
 
-void AjouterFinListeNavire(Navire* navire, Navire* new, Port* port) {
-    if (navire == NULL) {
-        navire = new;
+void AjouterFinListeNavire(Navire** navire, Navire* new, Port* port) {
+    if (*navire == NULL) {
+        *navire = new;
     } else {
-        Navire* current = navire;
+        Navire* current = *navire;
         while (current->NextNavire != NULL) {
             current = current->NextNavire;
         }
@@ -114,7 +114,6 @@ void AjouterFinListeNavire(Navire* navire, Navire* new, Port* port) {
             break;
     }
 }
-
 Navire* CreerNavire(Navire* navire) {
     static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
@@ -163,17 +162,28 @@ Navire* CreerNavire(Navire* navire) {
     return navire1;
 }
 
-Navire* CreerNavireAleatoire(Navire* navire){
+Navire* CreerNavireAleatoire(Navire* navire) {
     static int id_counter = 1; // ID du navire
     Navire* navire1 = malloc(sizeof(Navire));
+    if (navire1 == NULL) {
+        printf("Erreur d'allocation de mémoire pour le navire\n");
+        exit(1);
+    }
+
     const char* nomAleatoire = choisirNomAleatoire(nomsBateaux, 40);
     navire1->nom = malloc(strlen(nomAleatoire) + 1);
+    if (navire1->nom == NULL) {
+        printf("Erreur d'allocation de mémoire pour le nom du navire\n");
+        free(navire1);
+        exit(1);
+    }
     strcpy(navire1->nom, nomAleatoire);
-    printf("Nom du navire : %s\n\n",navire1->nom);
+    printf("Nom du navire : %s\n\n", navire1->nom);
     navire1->id = id_counter++;
     navire1->type = rand() % 4 + 1;
     strcpy(navire1->etat, "en mer");
     navire1->CapaciteChargement = rand() % 1000 + 1;
+    navire1->NextNavire = NULL;
 
     return navire1;
 }
@@ -237,14 +247,15 @@ int boutonClicked(int OnClicked){
     return OnClicked;
 }
 
-Navire* genererBateaux(Port* port, Navire* navire, int OnClicked){
+Navire* genererBateaux(Port* port, Navire** navire, int OnClicked) {
     Navire* newNavire = CreerNavireAleatoire(NULL);
     AjouterFinListeNavire(navire, newNavire, port);
-    if (navire == NULL) {
-        navire = newNavire;}
+    if (*navire == NULL) {
+        *navire = newNavire;
+    }
     OnClicked = 0;
-    AfficherNavire(navire);
-    return navire;
+    AfficherNavire(*navire);
+    return *navire;
 }
 
 void gestionMouillage(Navire* navire, int etatBouton, Port* port){

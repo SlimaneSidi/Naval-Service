@@ -61,9 +61,9 @@ Navire* CreerNavire(Navire* navire);
 Navire* CreerNavireAleatoire(Navire* navire);
 void AfficherQuai(Port* port);
 void AfficherNavire(Navire* navire);
-void AjouterFinListeNavire(Navire* navire, Navire* new, Port* port);
+void AjouterFinListeNavire(Navire** navire, Navire* new, Port* port);
 void GestionMouillage(Port* port, Navire* navire);
-Navire* genererBateaux(Port* port, Navire* navire, int OnClicked);
+Navire* genererBateaux(Port* port, Navire** navire, int OnClicked);
 int supprimeNavire(Navire**PremierElementListe,Navire* navireASupprimer);
 Quai* distribNavires(Navire *navire, Port*port);
 
