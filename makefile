@@ -9,7 +9,7 @@ SAVE := ./save
 SRCFILES := main.c moteur.c menu.c nomBateaux.c
 SAVEFILES := save.c
 
-SRCFILES := main.c moteur.c menu.c nomBateaux.c visuals.c
+SRCFILES := main.c moteur.c menu.c nomBateaux.c visuals.c ourdrawings.c
 OBJFILES := $(patsubst %.c, $(BUILDDIR)/%.o, $(SRCFILES))
 SAVEOBJFILES := $(patsubst %.c, $(BUILDDIR)/%.o, $(SAVEFILES))
 

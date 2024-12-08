@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define SIZE 50
 #define NP "navire de passagers"
@@ -32,6 +33,7 @@ typedef struct Navire{
     TypeNavire type;
     char etat[SIZE];            // (en mer, accosté, en attente)
     int CapaciteChargement;     // (en tonnes)
+    char* NomQuai;
     struct Navire* NextNavire;
 }Navire;
 
@@ -59,7 +61,10 @@ Navire* CreerNavire(Navire* navire);
 Navire* CreerNavireAleatoire(Navire* navire);
 void AfficherQuai(Port* port);
 void AfficherNavire(Navire* navire);
-void AjouterFinListeQuai(Quai* quai, Quai* new);
-void AjouterFinListeNavire(Navire* navire, Navire* new);
+void AjouterFinListeNavire(Navire** navire, Navire* new, Port* port);
+void GestionMouillage(Port* port, Navire* navire);
+Navire* genererBateaux(Port* port, Navire** navire, int OnClicked);
+int supprimeNavire(Navire**PremierElementListe,Navire* navireASupprimer);
+Quai* distribNavires(Navire *navire, Port*port);
 
 #endif
