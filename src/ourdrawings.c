@@ -107,11 +107,13 @@ void Draw3() {
     }
 
      Button* bouton3 = initializeButton(25, 500, "Afficher quai");
-    Button* bouton4 = initializeButton(25, 440, "Button 4");
-    Button* bouton5 = initializeButton(25, 380, "Button 5");
+     Button* bouton4 = initializeButton(25, 440, "Afficher navires");
+     Button* bouton5 = initializeButton(25, 380, "Cree navire");
+     Button* bouton6 = initializeButton(25, 300, "distribution");
     drawButton(bouton3);
     drawButton(bouton4);
     drawButton(bouton5);
+    drawButton(bouton6);
 
     // Refresh the window to display the drawing
     rafraichisFenetre();
