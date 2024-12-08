@@ -79,6 +79,7 @@ void gestionEvenement(EvenementGfx evenement) {
     static Button* bouton4 = NULL;
 	static Button* bouton5 = NULL;
 	static Button* bouton6 = NULL;
+	static Button* bouton7 = NULL;
     
 	
     switch (evenement) {
@@ -86,10 +87,11 @@ void gestionEvenement(EvenementGfx evenement) {
         image = lisBMPRGB("data/img/sky2.bmp");
         bouton1 = initializeButton(50, 50, "Jouer");
         bouton2 = initializeButton(200, 50, "Quitter");
-        bouton3 = initializeButton(25, 500, "Afficher quai");
-        bouton4 = initializeButton(25, 440, "Afficher navires");
-        bouton5 = initializeButton(25, 380, "Cree navire");
-		bouton6 = initializeButton(25, 300, "distribution");
+        bouton3 = initializeButton(25, 550, "Afficher quai");
+        bouton4 = initializeButton(25, 490, "Afficher navires");;
+        bouton5 = initializeButton(25, 430, "Cree navire");
+		bouton6 = initializeButton(25, 370, "distribution");
+		bouton7 = initializeButton(25, 210, "Quitter");
         port = initQuai(); // Initialize the Port object
         demandeTemporisation(20);
         break;
@@ -112,6 +114,7 @@ void gestionEvenement(EvenementGfx evenement) {
             drawButton(bouton4);
             drawButton(bouton5);
 			drawButton(bouton6);
+			drawButton(bouton7);
             break;
         }
         break;
@@ -199,6 +202,11 @@ void gestionEvenement(EvenementGfx evenement) {
                     }
 					 if (isButtonClicked(bouton6, mouseX, mouseY) == 1) {
                         printf("c'est quoi ton probleme en fait\n");
+                    }
+					 if (isButtonClicked(bouton7, mouseX, mouseY) == 1) {
+                        printf("Button quitter\n");
+                        libereDonneesImageRGB(&image); 
+                        termineBoucleEvenements();
                     }
                 }
             }

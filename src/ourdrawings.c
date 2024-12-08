@@ -106,14 +106,16 @@ void Draw3() {
         couleurCourante(169, 169, 169); // Reset color to gray for next square
     }
 
-     Button* bouton3 = initializeButton(25, 500, "Afficher quai");
-     Button* bouton4 = initializeButton(25, 440, "Afficher navires");
-     Button* bouton5 = initializeButton(25, 380, "Cree navire");
-     Button* bouton6 = initializeButton(25, 300, "distribution");
+     Button* bouton3 = initializeButton(25, 550, "Afficher quai");
+     Button* bouton4 = initializeButton(25, 490, "Afficher navires");
+     Button* bouton5 = initializeButton(25, 430, "Cree navire");
+     Button* bouton6 = initializeButton(25, 370, "distribution");
+     Button* bouton7 = initializeButton(25, 210, "Quitter");
     drawButton(bouton3);
     drawButton(bouton4);
     drawButton(bouton5);
     drawButton(bouton6);
+    drawButton(bouton7);
 
     // Refresh the window to display the drawing
     rafraichisFenetre();
