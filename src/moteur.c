@@ -248,21 +248,33 @@ int boutonClicked(int OnClicked){
 }
 
 Navire* genererBateaux(Port* port, Navire** navire, int OnClicked) {
-    Navire* newNavire = CreerNavireAleatoire(NULL);
-    AjouterFinListeNavire(navire, newNavire, port);
-    if (*navire == NULL) {
-        *navire = newNavire;
-    }
-    OnClicked = 0;
-    AfficherNavire(*navire);
-    return *navire;
+    printf("(1) - Génération d'un navire aléatoire\n");
+    printf("(2) - Génération d'un navire manuelle\n");
+    int choix = 0;
+    scanf("%d", &choix);
+    if (choix == 1) {
+        Navire* newNavire = CreerNavireAleatoire(NULL);
+        AjouterFinListeNavire(navire, newNavire, port);
+        if (*navire == NULL) {
+            *navire = newNavire;}
+        OnClicked = 0;
+        AfficherNavire(*navire);
+        return *navire;}
+    else if (choix == 2) {
+        Navire* newNavire = CreerNavire(NULL);
+        AjouterFinListeNavire(navire, newNavire, port);
+        if (*navire == NULL) {
+            *navire = newNavire;}
+        OnClicked = 0;
+        AfficherNavire(*navire);
+        return *navire;}
+    else {printf("Choix invalide\n");
+        return *navire;}
 }
 
-void gestionMouillage(Navire* navire, int etatBouton, Port* port){
+void gestionMouillage(Navire* navire, Port* port){
     strcpy(navire->etat, "en attente");
-    if (etatBouton == 1) { 
-        printf("Check de la place disponible dans le quai demandé\n");
-    distribNavires(navire, port);}
+    distribNavires(navire, port);
 }
 
 
