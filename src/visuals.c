@@ -64,6 +64,10 @@ void gestionEvenement(EvenementGfx evenement){
     static DonneesImageRGB *image = NULL; // L'image a afficher au centre de l'ecran
     static Button* bouton1 = NULL;
     static Button* bouton2 = NULL;
+    static Button* bouton3 = NULL;
+    static Button* bouton4 = NULL;
+    static Button* bouton5 = NULL;
+    static Port* port = NULL; // Define a Port object
     switch (evenement){
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
