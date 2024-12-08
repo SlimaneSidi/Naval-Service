@@ -5,8 +5,15 @@
 #include <unistd.h>
 #include <time.h>
 
+Navire* navire1;
+
+Navire* InitNavire(Navire* navire) {
+    navire1 = navire;
+    return navire1;
+}
+
 int DrawNB; // Define the DrawNB variable
-Navire* navire = NULL; // Declare the navire variable
+//Navire* navire = NULL; // Declare the navire variable
 Port* port = NULL; // Declare the port variable
 
 int drawBoat(int argc, char **argv) {
@@ -38,7 +45,8 @@ int isButtonClicked(Button* button, int mouseX, int mouseY) {
            mouseY >= button->y && mouseY <= button->y + button->height;
 }
 
-int InitGFXMain(int argc, char **argv) {
+int InitGFXMain(int argc, char **argv, Navire* navire) {
+    navire1 = InitNavire(navire);
     initialiseGfx(argc, argv);
     prepareFenetreGraphique("OpenGL", LargeurFenetre, HauteurFenetre);
     lanceBoucleEvenements();
@@ -179,7 +187,7 @@ void gestionEvenement(EvenementGfx evenement) {
                     if (isButtonClicked(bouton4, mouseX, mouseY) == 1) {
                         printf("\n\n");
                         printf("Affichage des navires:\n");
-                        AfficherNavire(navire); // Display existing ships
+                        AfficherNavire(navire1); // Display existing ships
                     }
                     if (isButtonClicked(bouton5, mouseX, mouseY) == 1) {
                         printf("Button 5 clicked\n");

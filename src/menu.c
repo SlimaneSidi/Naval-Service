@@ -40,7 +40,7 @@ void menu(Port* port, Navire* navire) {
             switch (choixSave) {
             case 1:
                 GetDrawNB(7);
-                InitGFXMain(argc, argv);
+                InitGFXMain(argc, argv, navire);
                 break;
             case 2:
                 ChargerNavalService("sauvegarde.bin");
@@ -96,21 +96,21 @@ void menu(Port* port, Navire* navire) {
             printf("--- Menu ---\n\n");
             printf("\n\n");
             GetDrawNB(7);
-            InitGFXMain(argc, argv);
+            InitGFXMain(argc, argv, navire);
             break;
         case 8:
             printf("\n");
             printf("--- Dessiner bateau 2  ---\n\n");
             printf("\n\n");
             GetDrawNB(8);
-            InitGFXMain(argc, argv);
+            InitGFXMain(argc, argv, navire);
             break;
         case 9:
             printf("\n");
             printf("--- Dessiner Map  ---\n\n");
             printf("\n\n");
             GetDrawNB(9);
-            InitGFXMain(argc, argv);
+            InitGFXMain(argc, argv, navire);
             break;
         default:
             printf("error");

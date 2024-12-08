@@ -28,10 +28,11 @@ extern Square docks[4][4]; // Array to store squares for each dock
 extern Square waitingDock[4]; // Array to store squares for the waiting dock
 
 int drawBoat(int argc, char **argv);
-int InitGFXMain(int argc, char **argv);
+int InitGFXMain(int argc, char **argv, Navire* navire);
 void cercle(float centreX, float centreY, float rayon);
 void gestionEvenement(EvenementGfx evenement);
 int GetDrawNB(int NB);
+Navire* InitNavire(Navire* navire);
 void Draw1();
 void Draw2();
 void Draw3();
