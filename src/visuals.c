@@ -87,7 +87,7 @@ void gestionEvenement(EvenementGfx evenement) {
         bouton3 = initializeButton(25, 500, "Afficher quai");
         bouton4 = initializeButton(25, 440, "Afficher navires");
         bouton5 = initializeButton(25, 380, "Cree navire");
-		bouton6 = initializeButton(25, 370, "distribution");
+		bouton6 = initializeButton(25, 300, "distribution");
         bouton7 = initializeButton(25, 210, "Quitter");
         port = initQuai(); 
         demandeTemporisation(20);
@@ -224,8 +224,8 @@ void gestionEvenement(EvenementGfx evenement) {
     case Inactivite: 
         break;
     case Redimensionnement: 
-        printf("Largeur : %d\t", largeurFenetre());
-        printf("Hauteur : %d\n", hauteurFenetre());
+        // printf("Largeur : %d\t", largeurFenetre());
+        // printf("Hauteur : %d\n", hauteurFenetre());
         break;
     }
 }
