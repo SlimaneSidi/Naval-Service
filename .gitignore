@@ -14,5 +14,7 @@ caca.c
 sauvegarde.bin
 
 // Fichier de configuration de VSCode
+/vscode
 vscode
+/.vscode
 .vscode
