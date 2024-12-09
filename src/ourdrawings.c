@@ -91,16 +91,18 @@ void Draw3() {
         afficheChaine(waitingDock[j].number, 12, waitingDock[j].x + 5, waitingDock[j].y + 5);
         couleurCourante(169, 169, 169); // Reset color to gray for next square
     }
-     Button* bouton3 = initializeButton(25, 500, "Afficher quai");
-     Button* bouton4 = initializeButton(25, 440, "Afficher navires");
-     Button* bouton5 = initializeButton(25, 380, "Cree navire");
-     Button* bouton6 = initializeButton(25, 370, "distribution");
-     Button* bouton7 = initializeButton(25, 210, "Quitter");
+     Button* bouton3 = initializeButton(25, 520, "Afficher quais");
+     Button* bouton4 = initializeButton(25, 460, "Afficher navires");
+     Button* bouton5 = initializeButton(25, 400, "Creer navire");
+     Button* bouton6 = initializeButton(25, 340, "Distribution");
+     Button* bouton7 = initializeButton(25, 220, "Quitter");
+     Button* bouton8 = initializeButton(25, 280, "Sauvegarder");
     drawButton(bouton3);
     drawButton(bouton4);
     drawButton(bouton5);
     drawButton(bouton6);
     drawButton(bouton7);
+    drawButton(bouton8);
 
     rafraichisFenetre();
 }

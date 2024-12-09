@@ -1,4 +1,5 @@
 #include "../include/visuals.h"
+#include "../include/save.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -78,17 +79,19 @@ void gestionEvenement(EvenementGfx evenement) {
 	static Button* bouton5 = NULL;
 	static Button* bouton6 = NULL;
     static Button* bouton7 = NULL;
+    static Button* bouton8 = NULL;
     
     switch (evenement) {
     case Initialisation:
         image = lisBMPRGB("data/img/sky2.bmp");
         bouton1 = initializeButton(50, 50, "Jouer");
         bouton2 = initializeButton(200, 50, "Quitter");
-        bouton3 = initializeButton(25, 500, "Afficher quai");
-        bouton4 = initializeButton(25, 440, "Afficher navires");
-        bouton5 = initializeButton(25, 380, "Cree navire");
-		bouton6 = initializeButton(25, 300, "distribution");
-        bouton7 = initializeButton(25, 210, "Quitter");
+        bouton3 = initializeButton(25, 520, "Afficher quais");
+        bouton4 = initializeButton(25, 460, "Afficher navires");
+        bouton5 = initializeButton(25, 400, "Creer navire");
+		bouton6 = initializeButton(25, 340, "Distribution");
+        bouton7 = initializeButton(25, 220, "Quitter");
+        bouton8 = initializeButton(25, 280, "Sauvegarder");
         port = initQuai(); 
         demandeTemporisation(20);
         break;
@@ -196,6 +199,10 @@ void gestionEvenement(EvenementGfx evenement) {
                         printf("Button quitter\n");
                         libereDonneesImageRGB(&image); 
                         termineBoucleEvenements();
+                    }
+                    if (isButtonClicked(bouton8, mouseX, mouseY) == 1) {
+                        printf("Button sauvegarder\n");
+                        saveNavalService(navire1, "sauvegarde.bin");
                     }
                 }
             }

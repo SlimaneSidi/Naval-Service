@@ -281,6 +281,7 @@ void GestionMouillage(Port* port, Navire* navire) {
 }
 
 void DistribuerNavires(Navire* navire, Port* port) {
+    if (navire == NULL && port == NULL) {printf("Aucun navire à distribuer\n"); return;}
     if (navire->type == NAVIRE_PASSAGERS) {
         if (port->QuaiPassager->NbNaviresAccostes < 4) {
             port->QuaiPassager->NbNaviresAccostes++;
